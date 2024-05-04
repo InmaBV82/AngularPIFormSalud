@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/bootswatch/dist/minty/variables";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "../node_modules/bootswatch/dist/minty/bootswatch";
+
+.ng-valid[required],  .ng-valid.required{
+    border-left: 5px solid #cc7456;
+}
+
+.ng-invalid:not(form){
+    border-left: 5px solid #56cc9d;
+}

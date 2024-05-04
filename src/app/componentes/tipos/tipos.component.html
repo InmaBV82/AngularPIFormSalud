@@ -1,0 +1,23 @@
+<!--Si tenemos el resultado de ese tipo Observable le ponemos un alias resultObject
+@if(tipoList$ | async; as resultObject){}-->
+
+  <div class="container mt-5">
+    <h2>Tipos de Menús </h2>
+    <table class="table  mt-3">
+      <thead>
+        <tr class="table-secondary">
+          <th scope="row">Nombre</th>
+          <th scope="row">Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let tipo of tipos">
+          <td class="tipos">{{ tipo.nombre }}</td>
+          <td>{{ tipo.descripcion }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
