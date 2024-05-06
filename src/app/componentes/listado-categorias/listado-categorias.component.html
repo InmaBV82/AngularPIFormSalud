@@ -1,16 +1,44 @@
 <div class="container mt-5">
-  <h2>Categorías </h2>
-  <table class="table table-hover mt-3">
-    <thead>
-      <tr class="table-info">
-        <th>Nombre</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let categoria of categorias">
-        <td>{{ categoria.nombre }}</td>
+  <div class="row text-center">
+    <div class="col" *ngFor="let categoria of categorias">
+      <div class="box" (click)="cargarPlatos(categoria.id)">
+        {{ categoria.nombre }}
+      </div>
+    </div>
+  </div>
+  <hr>
+  <!-- Sección para mostrar platos y sus reseñas -->
+  <div class="row text-center mt-3" *ngFor="let plato of platos">
+    <div class="col-md-12">
+      <div (click)="toggleResenas(plato)">
+        <p class="h5">Categoría: {{ plato.categoriaNombre }}</p>
+        {{ plato.id }}<span class="h6"> {{ plato.nombre }}</span>
+        <hr>
+        <img [src]="'assets/imagenes/' + plato.foto" alt="Imagen de {{ plato.nombre }}" class="img-fluid">
+    <!--[src]property binding-->
+        <hr>
+        <br>
+        <p class="h6">Autor plato:{{ plato.autor }}</p>
+        <hr>
+        <p>Ingredientes: {{ plato.ingredientes }}</p>
+        <br>
+        <p>Descripción: {{ plato.descripcion }}</p>
+        <br>
+        <p>Minutos: {{ plato.tiempo }}</p>
 
-      </tr>
-    </tbody>
-  </table>
+      </div>
+      <!-- Acordeón para las reseñas -->
+      <div *ngIf="plato.expanded">
+        <!-- Agregar impresión de depuración aquí -->
+        <p>Reseñas: {{ plato.resenas | json }}</p>
+        <div *ngFor="let resena of plato.resenas">
+          <div class="card my-2">
+            <div class="card-body">
+              <p class="card-text">{{ resena.comentario }}</p>
+              <p class="card-text"><strong>Puntuación:</strong> {{ resena.puntuacion }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </div>

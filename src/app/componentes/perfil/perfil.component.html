@@ -1,16 +1,23 @@
-<h1 class="display-4 text-center mb-4">FormSalud</h1>
-<app-listado-categorias></app-listado-categorias>
 <div class="container">
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false">
-        Menús
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdown1">
-        <a class="dropdown-item" href="http://www.google.com">Google</a>
-        <a class="dropdown-item" href="http://www.bing.com">Bing</a>
-        <a class="dropdown-item" href="http://www.yahoo.com">Yahoo</a>
+<h1 class="display-4 text-center mb-4">FormSalud</h1>
+  <div class="row">
+    <!-- Menú desplegable -->
+    <div class="col-md-2">
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false">
+          Menús
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdown1">
+          <a class="dropdown-item" href="http://www.google.com">Menu 1</a>
+          <a class="dropdown-item" href="http://www.bing.com">Menu 2</a>
+          <a class="dropdown-item" href="http://www.yahoo.com">Menu 3</a>
+        </div>
       </div>
-    </div>  
-  </div>
-  
+    </div>
 
+    <!-- Componente de listado de categorías -->
+    <div class="col-md-10">
+      <app-listado-categorias></app-listado-categorias>
+    </div>
+  </div>
+</div>

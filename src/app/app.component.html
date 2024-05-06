@@ -1,9 +1,11 @@
 <!--<link href=" https://cdn.jsdelivr.net/npm/bootswatch@5.3.2/dist/minty/bootstrap.min.css " rel="stylesheet">-->
 
-<div class="content">
+<div class="d-flex flex-column min-vh-100">
   <app-navegacion></app-navegacion>
-  <router-outlet></router-outlet> 
+
+  <main class="flex-grow-1 container mt-3">
+    <router-outlet></router-outlet>
+  </main>
+
+  <app-footer class="mt-auto bg-light p-3"></app-footer>
 </div>
-
-<app-pie class="mt-auto bg-light p-3"></app-pie> 
-

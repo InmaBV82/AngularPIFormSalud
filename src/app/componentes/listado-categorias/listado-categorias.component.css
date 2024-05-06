@@ -1,0 +1,23 @@
+.box {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #dee2e6; /* Light grey border */
+    border-radius: 10px;
+    background-color: #f8f9fa; /* Light grey background */
+    color: #495057; /* Dark grey text */
+    font-size: 24px;
+    transition: transform 0.3s, border-color 0.3s;
+}
+.box:hover {
+    transform: scale(1.2); 
+    border-color: #00ffcc;
+    box-shadow: 0 0 15px rgba(0, 255, 179, 0.5); 
+
+}
+
+img {
+    max-width: 35%; /* Hace que la imagen sea responsive */
+    height: 35%; /* Mantiene la proporción de la imagen */
+}
