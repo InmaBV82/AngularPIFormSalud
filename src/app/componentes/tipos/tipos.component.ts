@@ -2,6 +2,7 @@ import { Component, OnInit, Pipe} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TiposService } from '../../servicios/tipos.service';
 import { Tipo } from '../../modelos/Tipo';
+import { EncabezadoComponent } from '../encabezado/encabezado.component';
 
 
 
@@ -9,7 +10,7 @@ import { Tipo } from '../../modelos/Tipo';
 @Component({
   selector: 'app-tipos',
   standalone: true,
-  imports: [CommonModule],
+  imports: [EncabezadoComponent,CommonModule],
   templateUrl: './tipos.component.html',
   styleUrl: './tipos.component.css'
 })

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgIf, NgStyle } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuariosService } from '../../servicios/usuarios.service';
 import { Usuario } from '../../modelos/Usuario';
 
@@ -17,7 +16,6 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private usuarioService: UsuariosService, 
-    private route: Router,
     private fb: FormBuilder,
   
   ) { }
@@ -45,8 +43,17 @@ export class LoginComponent implements OnInit{
   hacerLogin() {
     if(this.formLogin.valid){
       this.usuarioService.login(this.formLogin.value.email, this.formLogin.value.password)
-    }
-    
+    } 
+    else{
+
+      if(!this.formLogin.controls["email"].valid) {
+        this.emailValido = false;
+      }  
+      if(!this.formLogin.controls["password"].valid) {
+        this.passwordValido = false;
+      }
+
+    }   
 
   }
 

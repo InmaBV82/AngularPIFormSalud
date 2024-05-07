@@ -1,0 +1,41 @@
+.encabezado {
+    background-image: url('../../../assets/pexels-lum3n-44775-1028599.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 200px;
+    width: 100%;
+    position: relative;
+}
+
+.encabezado::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 0;
+}
+
+.texto-encabezado {
+    position: relative;
+    z-index: 1;
+    color: rgb(194, 151, 111);
+    padding: 20px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.399);
+}
+
+.nombre{
+    color: rgb(145, 182, 23);
+    padding: 20px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.399);
+}
+
+/*.encabezado{
+    background-image: url("../../../assets/fondo.jpg");
+    background-size:cover;  Esto hará que la imagen cubra todo el div ajustándose a su tamaño 
+    background-position:center;  Centra la imagen en el div 
+    height: 200px;  Ajusta esta altura según lo que necesites 
+    width: auto;  Asumiendo que quieres que el encabezado tenga el ancho completo
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    opacity: 0.5; 
+}*/

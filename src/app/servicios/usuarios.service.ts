@@ -20,7 +20,9 @@ export class UsuariosService {
   constructor(private http : HttpClient, private router : Router){
   this.apiUrl = 'http://localhost:8080/';
   this.cargarUsuarios();
+  
   }
+  
 
    //GET
   getUsuarios(): Observable<Usuario[]> {
@@ -30,15 +32,16 @@ export class UsuariosService {
   //POST
   addUsuario(form:FormGroup){
       
-       const usuarioData = {
+      const usuarioData = {
         ...form.value,//...el operador de propagación es usado para crear una copia de las propiedades de un objeto en otro objeto
         rol: 'usuario'  // Establece un valor predeterminado para el rol
       };
     return this.http.post(this.apiUrl+ 'usuarioNuevo', usuarioData);
   }
 
+
    // Método para cargar usuarios
-   cargarUsuarios() {
+  cargarUsuarios() {
     this.getUsuarios().subscribe({
       next: (data) => {
         this.usuarios = data; 
@@ -47,16 +50,22 @@ export class UsuariosService {
     });
   }
   
-
-  login(email: string|null, password: string|null) {
+//Autenticacion login
+  login(email: string, password: string) {
+    let existe: boolean =false
     for (let usu of this.usuarios) {
       if (usu.email == email && usu.password == password) {
         this.usuarioLogueado = usu
         this.router.navigateByUrl('/perfil');
+        existe=true
+        break;
 
       }
-
     }
+    if(!existe){
+      alert("Email no registrado")
+    }
+    
     return this.usuarioLogueado
 
   }
@@ -73,7 +82,7 @@ export class UsuariosService {
 
   
 
-  agregarUsuario(usuario: Usuario) {
+  /*agregarUsuario(usuario: Usuario) {
     console.log(this.usuarios)
     let existe : boolean = false
      // Establece el valor predeterminado para el rol
@@ -93,7 +102,7 @@ export class UsuariosService {
     return existe
     
 
-  }
+  }*/
 
 
 }

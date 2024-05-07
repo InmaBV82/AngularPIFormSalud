@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { CategoriaComponent } from '../categoria/categoria.component';
 import { ListadoCategoriasComponent } from '../listado-categorias/listado-categorias.component';
+import { EncabezadoComponent } from '../encabezado/encabezado.component';
 
 @Component({
   selector: 'app-inicio',
   standalone: true,
-  imports: [CategoriaComponent, ListadoCategoriasComponent],
+  imports: [EncabezadoComponent,ListadoCategoriasComponent],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })
