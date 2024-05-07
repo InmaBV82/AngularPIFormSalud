@@ -10,7 +10,7 @@
   <!-- Sección para mostrar platos y sus reseñas -->
   <div class="row text-center mt-3" *ngFor="let plato of platos">
     <div class="col-md-12">
-      <div (click)="toggleResenas(plato)">
+      <div >
         <p class="h5">Categoría: {{ plato.categoriaNombre }}</p>
         {{ plato.id }}<span class="h6"> {{ plato.nombre }}</span>
         <hr>
@@ -28,17 +28,24 @@
 
       </div>
       <!-- Acordeón para las reseñas -->
-      <div *ngIf="plato.expanded">
-        <!-- Agregar impresión de depuración aquí -->
-        <p>Reseñas: {{ plato.resenas | json }}</p>
-        <div *ngFor="let resena of plato.resenas">
-          <div class="card my-2">
-            <div class="card-body">
-              <p class="card-text">{{ resena.comentario }}</p>
-              <p class="card-text"><strong>Puntuación:</strong> {{ resena.puntuacion }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
+      <button type="button" class="btn btn-primary btn-md shadow-sm px-2" (click)="cargarResenas(plato.id)">Mostrar Reseñas</button>
+        <table class="table table-striped table-hover table-bordered mt-1">
+          <thead class="table-dark">
+            <tr>
+              <th>Fecha</th>
+              <th>Autor reseña</th>
+              <th>Comentario</th>
+              <th>Puntuación</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let resena of resenas">
+              <td>{{ resena.fecha }}</td>
+              <td>{{ resena.autor }}</td>
+              <td>{{ resena.comentario }}</td>
+              <td>{{ resena.puntuacion }}</td>
+            </tr>
+          </tbody>
+        </table>
     </div>
 </div>
