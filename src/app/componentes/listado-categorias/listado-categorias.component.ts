@@ -6,6 +6,8 @@ import { ResenaService } from '../../servicios/resena.service';
 import { Categoria } from '../../modelos/Categoria';
 import { PlatoDTO } from '../../modelos/PlatoDTO';
 import { ResenaDTO } from '../../modelos/ResenaDTO';
+import { Usuario } from '../../modelos/Usuario';
+import { UsuariosService } from '../../servicios/usuarios.service';
 
 @Component({
   selector: 'app-listado-categorias',
@@ -17,12 +19,14 @@ import { ResenaDTO } from '../../modelos/ResenaDTO';
 export class ListadoCategoriasComponent implements OnInit {
   categorias : Categoria[]=[];
   platos : PlatoDTO[]=[];
-  resenas: ResenaDTO[]=[]
+  resenas: ResenaDTO[]=[];
+  usuario!:Usuario | null
 
   constructor(
     private listadoService: ListadoCategoriaService,
     private platoService: PlatoService,
-    private resenaService: ResenaService
+    private resenaService: ResenaService,
+    private usuarioService: UsuariosService
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +46,8 @@ export class ListadoCategoriasComponent implements OnInit {
   }
 
   cargarPlatos(categoriaId: number): void {
+    this.platos = [];
+    this.resenas = [];  // Limpia las reseñas cada vez que se cambian los platos
     this.platoService.getPlatosCategoria(categoriaId).subscribe({
       next: (data: PlatoDTO[]) => {
         this.platos = data
@@ -53,15 +59,27 @@ export class ListadoCategoriasComponent implements OnInit {
   }
   
   cargarResenas(platoid: number): void {
+    this.resenas = [];// Limpia las reseñas antes de cargar nuevas
     this.resenaService.getResenasPlato(platoid).subscribe({
       next: (data: ResenaDTO[]) => {
+        this.resenas = [];
         this.resenas = data
       },
       error: (error: any) => {
         console.error('Error al obtener los platos:', error);
       }
     });
-   
+  
+  }
+
+  comprobar(){
+    this.usuario=this.usuarioService.getUsuarioLogueado()
+    return this.usuario
+    
+  }
+  
+  addResenas(){
+      
   }
 
 

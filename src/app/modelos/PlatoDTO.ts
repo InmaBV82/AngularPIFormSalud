@@ -1,3 +1,5 @@
+import { ResenaDTO } from "./ResenaDTO";
+
 export interface PlatoDTO{
     id : number;
 
@@ -14,6 +16,8 @@ export interface PlatoDTO{
     categoriaNombre: String;
 	
     autor:String
+
+    resenas: ResenaDTO[];
 
 
 }

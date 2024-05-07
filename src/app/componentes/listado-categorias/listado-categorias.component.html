@@ -11,26 +11,27 @@
   <div class="row text-center mt-3" *ngFor="let plato of platos">
     <div class="col-md-12">
       <div >
-        <p class="h5">Categoría: {{ plato.categoriaNombre }}</p>
+        <p class="h5 text-primary">Categoría: {{ plato.categoriaNombre }}</p>
         {{ plato.id }}<span class="h6"> {{ plato.nombre }}</span>
         <hr>
         <img [src]="'assets/imagenes/' + plato.foto" alt="Imagen de {{ plato.nombre }}" class="img-fluid">
     <!--[src]property binding-->
         <hr>
         <br>
-        <p class="h6">Autor plato:{{ plato.autor }}</p>
+        <p class="h6">Autor plato: {{ plato.autor }}</p>
         <hr>
-        <p>Ingredientes: {{ plato.ingredientes }}</p>
+        <p style="text-align: justify;">Ingredientes: {{ plato.ingredientes }}</p>
         <br>
-        <p>Descripción: {{ plato.descripcion }}</p>
+        <p style="text-align: justify;">Descripción: {{ plato.descripcion }}</p>
         <br>
         <p>Minutos: {{ plato.tiempo }}</p>
 
       </div>
-      <!-- Acordeón para las reseñas -->
-      <button type="button" class="btn btn-primary btn-md shadow-sm px-2" (click)="cargarResenas(plato.id)">Mostrar Reseñas</button>
-        <table class="table table-striped table-hover table-bordered mt-1">
-          <thead class="table-dark">
+
+      <!-- Tabla para mostrar las reseñas -->
+      <button *ngIf="comprobar()" type="button" class="btn btn-primary btn-md shadow-sm px-2" (click)="addResenas()">Añadir Reseñas</button>
+        <table class="table table-hover table-bordered mt-2">
+          <thead class="table-secondary">
             <tr>
               <th>Fecha</th>
               <th>Autor reseña</th>
@@ -39,7 +40,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let resena of resenas">
+            <tr *ngFor="let resena of plato.resenas">
               <td>{{ resena.fecha }}</td>
               <td>{{ resena.autor }}</td>
               <td>{{ resena.comentario }}</td>
