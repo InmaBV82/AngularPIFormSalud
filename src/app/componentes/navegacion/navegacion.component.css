@@ -6,7 +6,7 @@
     background-image: url('../../../assets/fondo.jpg');
     background-size: cover;
     background-position: center;
-    height: 100px;
+    height: auto;
     width: 100%;
     position: relative;
 }
@@ -17,5 +17,5 @@
 
 .menu, .text-center{
     color:rgb(36, 118, 110);
-    font-size: large;
+    font-size: medium;
 }

@@ -1,4 +1,5 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { Usuario } from '../modelos/Usuario';
 import { HttpClient } from '@angular/common/http';
@@ -13,11 +14,15 @@ export class UsuariosService {
 
   usuarios: Usuario[] = [];
 
-  usuarioLogueado!: Usuario | null;
+  usuarioLogueado!: Usuario | undefined | null;
 
   private apiUrl: string;
   
-  constructor(private http : HttpClient, private router : Router){
+  constructor(
+    private http : HttpClient,
+    private router : Router,
+
+  ){
   this.apiUrl = 'http://localhost:8080/';
   this.cargarUsuarios();
   
@@ -44,7 +49,9 @@ export class UsuariosService {
   cargarUsuarios() {
     this.getUsuarios().subscribe({
       next: (data) => {
-        this.usuarios = data; 
+        this.usuarios = data;
+        this.usuarioLogueado = this.usuarios.find(usu => usu.id === this.getUserId());
+        
       },
       error: (err) => console.error('Error al cargar usuarios', err)
     });
@@ -56,6 +63,7 @@ export class UsuariosService {
     for (let usu of this.usuarios) {
       if (usu.email == email && usu.password == password) {
         this.usuarioLogueado = usu
+        this.saveUserId(usu.id); 
         this.router.navigateByUrl('/perfil');
         existe=true
         break;
@@ -65,44 +73,31 @@ export class UsuariosService {
     if(!existe){
       alert("Email no registrado")
     }
-    
     return this.usuarioLogueado
+  }
 
+  //GUARDAR USUARIO conviertiendo el id en string para guardarlo en el sessionstorage
+  saveUserId(userId: number) {
+    sessionStorage.setItem('userId', userId.toString());
+  }
+
+  getUserId(): number {
+    const id = sessionStorage.getItem('userId');
+    const parsedId = id ? parseInt(id, 10) : 0;
+    return Number.isNaN(parsedId) ? 0 : parsedId;
   }
 
 
   logout() {
-    this.usuarioLogueado=null
-    this.router.navigateByUrl("/login")
+    this.usuarioLogueado = null;
+    sessionStorage.removeItem('userId'); // Borra el userId de la sessionStorage
+    this.router.navigateByUrl("/login");
   }
 
   getUsuarioLogueado() {
     return this.usuarioLogueado
   }
 
-  
-
-  /*agregarUsuario(usuario: Usuario) {
-    console.log(this.usuarios)
-    let existe : boolean = false
-     // Establece el valor predeterminado para el rol
-    usuario.rol = usuario.rol || 'usuario';
-    let usuarioNuevo=usuario
-    for (let usu of this.usuarios) {
-      console.log(usu.email, usuarioNuevo.email);
-      if(usuarioNuevo["email"]==usu["email"]){
-        existe=true
-        break;
-
-      }
-    }
-    if(!existe){
-      this.usuarios.push(usuarioNuevo);
-    }
-    return existe
-    
-
-  }*/
 
 
 }

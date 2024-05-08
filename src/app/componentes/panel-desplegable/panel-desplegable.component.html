@@ -1,16 +1,3 @@
-<!--<div class="col-md-2">
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-bs-toggle="dropdown" aria-expanded="false">
-        Panel
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdown1">
-        <a class="dropdown-item"> Mi Histórico</a>
-        <a class="dropdown-item">Publicar Receta</a>
-        <a class="dropdown-item">Mis Reseñas</a>
-        <a class="dropdown-item">Ajustes de Perfil</a>
-      </div>
-    </div>
-  </div>-->
 <div class="container-fluid">
 <div class="row">
     <!-- Botón -->
@@ -20,9 +7,20 @@
     <div class="sidebar bg-light border" [class.active]="panelVisible">
     <!-- Contenido del panel -->
     <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action">Mi Histórico</a>
-        <a href="#" class="list-group-item list-group-item-action">Publicar Receta</a>
-        <a href="#" class="list-group-item list-group-item-action">Mis Reseñas</a>
-        <a href="#" class="list-group-item list-group-item-action">Ajustes de Perfil</a>
-    </div>
-    </div>
+      <a href="#" class="list-group-item list-group-item-action">Mi Histórico</a>
+      <a href="#" class="list-group-item list-group-item-action">Publicar Receta</a>
+      <a href="#" class="list-group-item list-group-item-action" (click)="cargarResenas()">Mis Reseñas</a>
+      <a href="#" class="list-group-item list-group-item-action">Ajustes de Perfil</a>
+  </div>
+  
+  <!-- Sección de reseñas -->
+  <div *ngIf="cargarResenas" class="reseñas-container mt-4">
+          <div class="card mb-2" *ngFor="let resena of resenas">
+              <div class="card-body">
+                  <h5 class="card-title">{{ resena.autor }}</h5> 
+                  <p class="card-text"><small class="text-muted">Fecha: {{ resena.fecha | date }}</small></p>
+                  <p class="card-text">{{ resena.comentario }}</p>
+                  <p class="card-text"><small class="text-muted">Puntuación: {{ resena.puntuacion }} / 5</small></p>
+              </div>
+          </div>
+  </div>

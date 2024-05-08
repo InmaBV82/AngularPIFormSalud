@@ -20,7 +20,7 @@ export class ListadoCategoriasComponent implements OnInit {
   categorias : Categoria[]=[];
   platos : PlatoDTO[]=[];
   resenas: ResenaDTO[]=[];
-  usuario!:Usuario | null
+  usuario!:Usuario | null | undefined
 
   constructor(
     private listadoService: ListadoCategoriaService,
@@ -78,7 +78,7 @@ export class ListadoCategoriasComponent implements OnInit {
     
   }
   
-  addResenas(){
+  crearResenas(){
       
   }
 
