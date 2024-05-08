@@ -1,4 +1,21 @@
 #imagen{
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
+}
+.navbar{
+    background-image: url('../../../assets/fondo.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100px;
+    width: 100%;
+    position: relative;
+}
+
+.breadcrumb {
+    background-color: transparent;
+}
+
+.menu, .text-center{
+    color:rgb(36, 118, 110);
+    font-size: large;
 }
