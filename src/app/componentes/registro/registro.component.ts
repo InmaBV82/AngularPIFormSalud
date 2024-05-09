@@ -56,7 +56,7 @@ export class RegistroComponent {
           alert("Ya existe el correo electrónico")
         },
         next: (e) =>{
-          alert("usuario registrado")
+          alert("Usuario registrado correctamente")
           this.route.navigateByUrl('/login');
           
         }

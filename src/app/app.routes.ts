@@ -4,11 +4,13 @@ import { LoginComponent } from './componentes/login/login.component';
 import { RegistroComponent } from '../app/componentes/registro/registro.component';
 import { PerfilComponent } from '../app/componentes/perfil/perfil.component';
 import { TiposComponent } from '../app/componentes/tipos/tipos.component';
+import { AjustesComponent } from './componentes/ajustes/ajustes.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent},
     { path:'registro', component: RegistroComponent },
     { path: 'perfil', component: PerfilComponent},
     { path: 'tipos', component: TiposComponent},
+    { path: 'ajustes', component: AjustesComponent},
     { path : '**', component: InicioComponent},
 ];

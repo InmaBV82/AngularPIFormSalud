@@ -11,12 +11,12 @@ export class PlatoService {
 
   private apiUrl: string;
 
-  constructor(private htp : HttpClient) {
+  constructor(private http : HttpClient) {
     this.apiUrl = 'http://localhost:8080/';
   }
 
   getPlatosCategoria(categoriaid:number): Observable<PlatoDTO[]> {
-    return this.htp.get<PlatoDTO[]>(this.apiUrl+ 'platosCategoria/'+categoriaid);
+    return this.http.get<PlatoDTO[]>(this.apiUrl+ 'platosCategoria/'+categoriaid);
   }
 
 

@@ -1,0 +1,20 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <h5 class="card-header bg-primary text-white">Perfil del Usuario</h5>
+                <div class="card-body">
+                    <h6 class="card-title"><strong>Nombre: </strong>{{ usuario.nombre }}</h6>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Email: </strong> {{ usuario.email }}</li>
+                        <li class="list-group-item"><strong>ID: </strong> {{ usuario.id }}</li>
+                    </ul>
+                </div>
+                <div class="card-footer text-muted">
+                    <button class="btn btn-primary me-2" (click)="editarUsuario()">Editar</button>
+                    <button class="btn btn-danger" (click)="eliminarUsuario(usuario.id)">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

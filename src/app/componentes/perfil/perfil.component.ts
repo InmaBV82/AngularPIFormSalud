@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ListadoCategoriasComponent } from '../listado-categorias/listado-categorias.component';
 import { PanelDesplegableComponent } from '../panel-desplegable/panel-desplegable.component';
 import { EncabezadoComponent } from '../encabezado/encabezado.component';
-import { UsuariosService } from '../../servicios/usuarios.service';
-import { Usuario } from '../../modelos/Usuario';
 import { Router } from '@angular/router';
 
 

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { Usuario } from '../modelos/Usuario';
 import { HttpClient } from '@angular/common/http';
@@ -34,6 +33,24 @@ export class UsuariosService {
     return this.http.get<Usuario[]>(this.apiUrl+ 'usuarios');
   }
 
+  // Método para cargar usuarios
+  cargarUsuarios() {
+  this.getUsuarios().subscribe({
+    next: (data) => {
+      this.usuarios = data;
+      this.usuarioLogueado = this.usuarios.find(usu => usu.id === this.getUserId());
+      
+    },
+    error: (err) => console.error('Error al cargar usuarios', err)
+  });
+}
+
+  //cargar un usuario por Id
+  getAjustesUsuario(userId: number): Observable<Usuario> {
+    return this.http.get<Usuario>(this.apiUrl+ 'usuario/' + userId);
+  }
+
+  
   //POST
   addUsuario(form:FormGroup){
       
@@ -45,17 +62,13 @@ export class UsuariosService {
   }
 
 
-   // Método para cargar usuarios
-  cargarUsuarios() {
-    this.getUsuarios().subscribe({
-      next: (data) => {
-        this.usuarios = data;
-        this.usuarioLogueado = this.usuarios.find(usu => usu.id === this.getUserId());
-        
-      },
-      error: (err) => console.error('Error al cargar usuarios', err)
-    });
-  }
+  //DELETE
+  deleteUsuarioById(usuarioId:number): Observable<Usuario> {
+      return this.http.delete<Usuario>(this.apiUrl+ 'usuario/'+usuarioId);
+    }
+
+
+
   
 //Autenticacion login
   login(email: string, password: string) {
@@ -84,8 +97,10 @@ export class UsuariosService {
   getUserId(): number {
     const id = sessionStorage.getItem('userId');
     const parsedId = id ? parseInt(id, 10) : 0;
+  //  console.log(this.getUserId)
     return Number.isNaN(parsedId) ? 0 : parsedId;
   }
+  
 
 
   logout() {
@@ -97,6 +112,7 @@ export class UsuariosService {
   getUsuarioLogueado() {
     return this.usuarioLogueado
   }
+
 
 
 

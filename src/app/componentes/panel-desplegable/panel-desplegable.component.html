@@ -1,26 +1,17 @@
 <div class="container-fluid">
 <div class="row">
     <!-- Botón -->
-    <button class="btn btn-outline-primary btn-hamburguer" (click)="mostrarPanel()">Perfil</button>
+    <button class="btn btn-outline-primary" (click)="mostrarPanel()">Opciones</button>
 
     <!-- panel gestionado con enlace de clases -->
-    <div class="sidebar bg-light border" [class.active]="panelVisible">
+    <div class="sidebar bg-light border col-md" [class.active]="panelVisible">
     <!-- Contenido del panel -->
     <div class="list-group">
       <a href="#" class="list-group-item list-group-item-action">Mi Histórico</a>
       <a href="#" class="list-group-item list-group-item-action">Publicar Receta</a>
-      <a href="#" class="list-group-item list-group-item-action" (click)="cargarResenas()">Mis Reseñas</a>
-      <a href="#" class="list-group-item list-group-item-action">Ajustes de Perfil</a>
+      <a href="#" class="list-group-item list-group-item-action" (click)="cargarResenas()" data-bs-toggle="modal" data-bs-target="#resenasModal">Mis Reseñas</a>
+      <a href="/ajustes" class="list-group-item list-group-item-action">Ajustes de Perfil</a>
   </div>
-  
-  <!-- Sección de reseñas -->
-  <div *ngIf="cargarResenas" class="reseñas-container mt-4">
-          <div class="card mb-2" *ngFor="let resena of resenas">
-              <div class="card-body">
-                  <h5 class="card-title">{{ resena.autor }}</h5> 
-                  <p class="card-text"><small class="text-muted">Fecha: {{ resena.fecha | date }}</small></p>
-                  <p class="card-text">{{ resena.comentario }}</p>
-                  <p class="card-text"><small class="text-muted">Puntuación: {{ resena.puntuacion }} / 5</small></p>
-              </div>
-          </div>
+  <div>
+    <app-resena [resenas]="resenas"></app-resena> 
   </div>
