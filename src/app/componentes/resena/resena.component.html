@@ -2,7 +2,6 @@
 <div class="reseñas-container mt-4">
     <div *ngFor="let resena of resenas" class="card mb-3">
         <div class="card-body">
-            <!--<h5 class="card-title">Reseña por: {{ resena.autor }}</h5>-->
             <p class="card-text"><small class="text-muted">Fecha: {{ resena.fecha | date:'dd/MM/yyyy' }}</small></p>
             <p class="card-text">{{ resena.comentario }}</p>
             <p class="card-text"><small class="text-muted">Puntuación: {{ resena.puntuacion }} estrellas</small></p>

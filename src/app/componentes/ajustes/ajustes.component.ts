@@ -3,6 +3,7 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { Usuario } from '../../modelos/Usuario';
 import { AjustesService } from '../../servicios/ajustes.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-ajustes',
@@ -18,7 +19,8 @@ export class AjustesComponent implements OnInit{
   constructor(
     private usuarioService: UsuariosService,
     private ajustesService: AjustesService,
-    private router: Router) { }
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.usuarioId = this.usuarioService.getUserId();
@@ -44,7 +46,7 @@ export class AjustesComponent implements OnInit{
 
   }
 
-  eliminarUsuario(usuarioId:number){
+ /* eliminarUsuario(usuarioId:number){
     const confirmacion = confirm('¿Está seguro que desea eliminar este usuario?');
     if (confirmacion) {
       this.usuarioService.deleteUsuarioById(usuarioId).subscribe({
@@ -61,6 +63,36 @@ export class AjustesComponent implements OnInit{
 
     this.usuarioService.deleteUsuarioById(usuarioId);
 
+  }*/
+
+
+  eliminarUsuario(usuarioId:number){
+    const confirmacion = confirm('¿Está seguro que desea eliminar este usuario?');
+    if (confirmacion) {
+      this.usuarioService.deleteUsuarioById(usuarioId).subscribe({
+        next: (response) => {
+          console.log('Usuario eliminado correctamente.');
+          this.sweetAlerta();
+          this.usuarioService.logout()
+          this.router.navigateByUrl('/inicio');
+        },
+        error: (error) => {
+          console.error('Ocurrió un error al eliminar el usuario:', error);
+        }
+      });
+    }
+
+    this.usuarioService.deleteUsuarioById(usuarioId);
+
+  }
+
+  sweetAlerta(){
+    Swal.fire({
+      title: "Error",
+      text: "Usuario eliminado correctamente",
+      icon: 'error',
+      confirmButtonText:'Cool'
+    });
   }
 
 }

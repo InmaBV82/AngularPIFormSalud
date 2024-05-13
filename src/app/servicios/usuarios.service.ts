@@ -4,6 +4,7 @@ import { Usuario } from '../modelos/Usuario';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 
 @Injectable({
@@ -23,7 +24,7 @@ export class UsuariosService {
 
   ){
   this.apiUrl = 'http://localhost:8080/';
-  this.cargarUsuarios();
+  //this.cargarUsuarios();
   
   }
   
@@ -34,7 +35,7 @@ export class UsuariosService {
   }
 
   // Método para cargar usuarios
-  cargarUsuarios() {
+ /* cargarUsuarios() {
   this.getUsuarios().subscribe({
     next: (data) => {
       this.usuarios = data;
@@ -43,7 +44,7 @@ export class UsuariosService {
     },
     error: (err) => console.error('Error al cargar usuarios', err)
   });
-}
+}*/
 
   //cargar un usuario por Id
   getAjustesUsuario(userId: number): Observable<Usuario> {
@@ -61,6 +62,11 @@ export class UsuariosService {
     return this.http.post(this.apiUrl+ 'usuarioNuevo', usuarioData);
   }
 
+  //LOGIN
+  loginUsuario(data : any): Observable<Usuario> {
+    return this.http.post<Usuario>(this.apiUrl+ 'login', data);
+  }
+
 
   //DELETE
   deleteUsuarioById(usuarioId:number): Observable<Usuario> {
@@ -71,7 +77,7 @@ export class UsuariosService {
 
   
 //Autenticacion login
-  login(email: string, password: string) {
+ /* login(email: string, password: string) {
     let existe: boolean =false
     for (let usu of this.usuarios) {
       if (usu.email == email && usu.password == password) {
@@ -84,10 +90,11 @@ export class UsuariosService {
       }
     }
     if(!existe){
-      alert("Email no registrado")
+      this.alertaPersonalizadaError("Error","Email no registrado","Error" )
+      //alert("Email no registrado")
     }
     return this.usuarioLogueado
-  }
+  }*/
 
   //GUARDAR USUARIO conviertiendo el id en string para guardarlo en el sessionstorage
   saveUserId(userId: number) {
@@ -109,10 +116,18 @@ export class UsuariosService {
     this.router.navigateByUrl("/login");
   }
 
-  getUsuarioLogueado() {
+ /*  getUsuarioLogueado() {
     return this.usuarioLogueado
-  }
+  } */
 
+  alertaPersonalizadaError(title:string, text:string, confirmButtonText:string){
+    Swal.fire({
+      title:title,
+      text: text,
+      icon: 'error',
+      confirmButtonText:confirmButtonText
+    });
+  }
 
 
 

@@ -10,9 +10,10 @@ import { CommonModule, DatePipe } from '@angular/common';
   templateUrl: './resena.component.html',
   styleUrl: './resena.component.css'
 })
-export class ResenaComponent  {
+export class ResenaComponent {
   @Input() resenas: ResenaDTO[]=[];
+
+}
   
 
 
-}

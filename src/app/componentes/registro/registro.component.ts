@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UsuariosService } from '../../servicios/usuarios.service';
 import { NgIf, NgStyle } from '@angular/common';
 import { Usuario } from '../../modelos/Usuario';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -38,7 +39,7 @@ export class RegistroComponent {
     this.registroForm = this.fb.group({
       nombre:["", [Validators.required]],
       email:["",[Validators.required, Validators.email]],
-      password:["",[Validators.required]],
+      password:["",[Validators.required, Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}')]],
 
     }
     )
@@ -53,11 +54,13 @@ export class RegistroComponent {
     if(this.registroForm.valid){
       this.usuService.addUsuario(this.registroForm).subscribe({
         error: (e)=>{
-          alert("Ya existe el correo electrónico")
+          this.alertaPersonalizadaError("Error","Ya existe el correo electrónico","Error" )
+          //alert("Ya existe el correo electrónico")
         },
         next: (e) =>{
-          alert("Usuario registrado correctamente")
+
           this.route.navigateByUrl('/login');
+          this.alertaPersonalizadaOK("OK","Usuario registrado correctamente","Confirm" )
           
         }
       });
@@ -77,5 +80,25 @@ export class RegistroComponent {
       }
 
   }
+  alertaPersonalizadaOK(title:string, text:string, confirmButtonText:string){
+      Swal.fire({
+        title:title,
+        text: text,
+        icon: 'success',
+        confirmButtonText:confirmButtonText
+      });
+  }
+
+  alertaPersonalizadaError(title:string, text:string, confirmButtonText:string){
+    Swal.fire({
+      title:title,
+      text: text,
+      icon: 'error',
+      confirmButtonText:confirmButtonText
+    });
+  
+
+}
+
 
 }

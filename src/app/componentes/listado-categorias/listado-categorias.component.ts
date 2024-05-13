@@ -72,11 +72,10 @@ export class ListadoCategoriasComponent implements OnInit {
   
   }
 
-  comprobar(){
-    this.usuario=this.usuarioService.getUsuarioLogueado()
-    return this.usuario
-    
+  comprobar(): boolean {
+    return sessionStorage.getItem('userId') !== null;
   }
+
   
   crearResenas(){
       
