@@ -5,6 +5,7 @@ import { RegistroComponent } from '../app/componentes/registro/registro.componen
 import { PerfilComponent } from '../app/componentes/perfil/perfil.component';
 import { TiposComponent } from '../app/componentes/tipos/tipos.component';
 import { AjustesComponent } from './componentes/ajustes/ajustes.component';
+import { HistoricoComponent } from './componentes/historico/historico.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent},
@@ -12,5 +13,6 @@ export const routes: Routes = [
     { path: 'perfil', component: PerfilComponent},
     { path: 'tipos', component: TiposComponent},
     { path: 'ajustes', component: AjustesComponent},
+    { path: 'historico', component: HistoricoComponent},
     { path : '**', component: InicioComponent},
 ];

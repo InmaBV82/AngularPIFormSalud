@@ -23,11 +23,6 @@ export class PanelDesplegableComponent implements OnInit {
     private resenaService: ResenaService
   ) {}
 
-  panelVisible: boolean = false;
-
-mostrarPanel(): void {
-    this.panelVisible = !this.panelVisible;
-  }
 
   ngOnInit(): void {
     this.usuarioId = this.usuarioService.getUserId(); // Obtener el ID del usuario logueado

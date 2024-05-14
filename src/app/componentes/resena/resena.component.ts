@@ -13,6 +13,8 @@ import { CommonModule, DatePipe } from '@angular/common';
 export class ResenaComponent {
   @Input() resenas: ResenaDTO[]=[];
 
+  constructor() {}
+
 }
   
 
