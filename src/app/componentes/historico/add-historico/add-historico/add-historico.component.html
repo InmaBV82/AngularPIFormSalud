@@ -1,0 +1,19 @@
+<h1 class="text-secondary">Histórico Nuevo</h1>
+<form [formGroup]="historicoForm" (ngSubmit)="agregarHistorico()">
+    <div class="mb-3">
+      <label for="fecha" class="form-label">Fecha</label>
+      <input type="date" class="form-control" id="fecha" formControlName="fecha">
+    </div>
+    <div class="mb-3">
+      <label for="momentodia" class="form-label">Momento del día</label>
+      <input type="text" class="form-control" id="momentodia" formControlName="momentodia">
+    </div>
+
+    <div class="mb-3">
+        <label for="platoid" class="form-label">Plato</label>
+        <select class="form-select" formControlName="platoid">
+          <option *ngFor="let plato of platos" [value]="plato.id">{{ plato.nombre }}</option>
+        </select>
+      </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </form>

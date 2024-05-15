@@ -16,6 +16,11 @@ export class PlatoService {
   }
 
   //GET
+
+  getTodoslosPlatos():Observable<PlatoDTO[]> {
+    return this.http.get<PlatoDTO[]>(this.apiUrl+ 'platosDto');
+  }
+  
   getPlatosCategoria(categoriaid:number): Observable<PlatoDTO[]> {
     return this.http.get<PlatoDTO[]>(this.apiUrl+ 'platosCategoria/'+categoriaid);
   }

@@ -3,6 +3,7 @@ import { HistoricoDTO } from '../../modelos/HistoricoDTO';
 import { HistoricoService } from '../../servicios/historico.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
 import { CommonModule, DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-historico',
@@ -17,7 +18,8 @@ export class HistoricoComponent implements OnInit {
 
   constructor(
     private usuarioService: UsuariosService,
-    private historicoService: HistoricoService
+    private historicoService: HistoricoService,
+    private router: Router
 
   ) { }
 
@@ -39,6 +41,10 @@ export class HistoricoComponent implements OnInit {
     else {
       console.error('No se pudo obtener el ID del usuario');
     }
+  }
+
+  addHistorico(){
+    this.router.navigateByUrl("/addHistorico")
   }
 
 }

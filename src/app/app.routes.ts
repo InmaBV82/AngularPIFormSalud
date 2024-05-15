@@ -8,6 +8,7 @@ import { AjustesComponent } from './componentes/ajustes/ajustes.component';
 import { HistoricoComponent } from './componentes/historico/historico.component';
 import { MenuPlatoComponent } from './componentes/menu-plato/menu-plato.component';
 import { PlatoComponent } from './componentes/plato/plato.component';
+import { AddHistoricoComponent } from './componentes/historico/add-historico/add-historico/add-historico.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent},
@@ -18,5 +19,6 @@ export const routes: Routes = [
     { path: 'historico', component: HistoricoComponent},
     { path: 'menuplatos', component: MenuPlatoComponent},
     { path: 'detalle-plato/:platoid', component: PlatoComponent},
+    { path: 'addHistorico', component: AddHistoricoComponent},
     { path : '**', component: InicioComponent},
 ];

@@ -22,8 +22,7 @@ export class RegistroComponent {
   nombreValido = true;
   emailValido = true;
   passwordValido = true;
-  error=""
-  mensaje=""
+
 
   constructor(
     private fb:FormBuilder,
@@ -55,7 +54,6 @@ export class RegistroComponent {
       this.usuService.addUsuario(this.registroForm).subscribe({
         error: (e)=>{
           this.alertaPersonalizadaError("Error","Ya existe el correo electrónico","Error" )
-          //alert("Ya existe el correo electrónico")
         },
         next: (e) =>{
 

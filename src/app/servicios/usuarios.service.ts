@@ -101,7 +101,7 @@ export class UsuariosService {
     sessionStorage.setItem('userId', userId.toString());
   }
 
-  getUserId(): number {
+  getUserId(): number {//devolver el userId convertido en number
     const id = sessionStorage.getItem('userId');
     const parsedId = id ? parseInt(id, 10) : 0;
   //  console.log(this.getUserId)
