@@ -1,6 +1,6 @@
   <app-encabezado></app-encabezado>
-  <div class="container mt-2">
-    <h2>Tipos de Menús </h2>
+  <div class="container mt-2 text-center">
+    <h2 class="text-success">Tipos de Menús </h2>
     <table class="table  mt-1">
       <thead>
         <tr class="table-secondary">
@@ -10,7 +10,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let tipo of tipos">
-          <td class="tipos text-info h5">{{ tipo.nombre }}</td>
+          <td class="tipos text-success h5">{{ tipo.nombre }}</td>
           <td style="text-align:justify;">{{ tipo.descripcion }}</td>
         </tr>
       </tbody>

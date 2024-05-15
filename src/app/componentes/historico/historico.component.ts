@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HistoricoDTO } from '../../modelos/HistoricoDTO';
 import { HistoricoService } from '../../servicios/historico.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
-import { Router } from '@angular/router';
 import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({

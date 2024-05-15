@@ -15,8 +15,13 @@ export class PlatoService {
     this.apiUrl = 'http://localhost:8080/';
   }
 
+  //GET
   getPlatosCategoria(categoriaid:number): Observable<PlatoDTO[]> {
     return this.http.get<PlatoDTO[]>(this.apiUrl+ 'platosCategoria/'+categoriaid);
+  }
+
+  getPlatoDTO(platoid:number): Observable<PlatoDTO> {
+    return this.http.get<PlatoDTO>(this.apiUrl+ 'platoDTO/'+platoid);
   }
 
 

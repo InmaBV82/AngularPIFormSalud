@@ -1,0 +1,18 @@
+.styled-title {
+    padding: 10px; /* Espacio dentro del recuadro */
+    background-color: #f8f9fa; /* Un color de fondo claro, puedes cambiarlo según tu diseño */
+    border: 1px solid #ccc; /* Un borde sutil */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra de caja para el efecto 3D */
+    border-radius: 5px; /* Bordes redondeados */
+    margin: 20px auto; /* Margen para separar del contenido adyacente y centrar horizontalmente si es necesario */
+    width: fit-content; /* Hace que el ancho del título se ajuste al contenido, puedes ajustar según necesidad */
+    box-sizing: border-box; /* Asegura que el padding y border sean incluidos en el ancho total */
+}
+
+img {
+    display: block;      /* Esto hace que la imagen se comporte como un bloque, permitiendo centrarla fácilmente */
+    margin: auto;        /* Esto centra la imagen horizontalmente dentro de su contenedor */
+    border: 2px solid rgb(55, 55, 55); /* Añade un borde sólido de 2px de ancho y color negro */
+    max-width: 50%;     /* Asegura que la imagen sea responsive y no exceda el ancho de su contenedor */
+    height: auto;        /* Mantiene la proporción de la imagen al ajustar el tamaño */
+}

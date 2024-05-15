@@ -1,1 +1,48 @@
-<p>plato works!</p>
+<div *ngIf="plato" class="container mt-4">
+    <div class="row justify-content-center">
+        <div><button class="btn btn-success mb-3" (click)="volver()">Atrás</button></div>
+        <div class="col-md-9">
+            <h1 class="text-center mb-3 mt-0 styled-title">Detalles del Plato</h1>
+            <div class="mb-3">
+                <h5>Nombre del Plato:</h5>
+                        <p >{{ plato.nombre }}</p>
+            </div>
+            <hr>
+            <img [src]="'assets/imagenes/' + plato.foto" alt="Imagen de {{ plato.nombre }}" class="img-fluid">
+            <hr>
+            <div class="mb-3">
+                <h5>Autor plato:</h5>
+                <p>{{ plato.autor }}</p>
+            </div>
+            <div class="text-align: justify; mb-3">
+                <h5>Ingredientes:</h5>
+                <p>{{ plato.ingredientes }}</p>
+            </div>
+            <div class="text-align: justify; mb-3">
+                <h5>Descripción:</h5>
+                <p>{{ plato.descripcion }}</p>
+            </div>
+            <div class="mb-3">
+                <h5>Reseñas:</h5>
+                <table class="table table-hover table-bordered mt-2">
+                    <thead class="table-secondary text-center">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Autor reseña</th>
+                            <th>Comentario</th>
+                            <th>Puntuación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-center" *ngFor="let resena of plato.resenas">
+                            <td>{{ resena.fecha | date:'dd/MM/yyyy' }}</td>
+                            <td>{{ resena.autor }}</td>
+                            <td>{{ resena.comentario }}</td>
+                            <td>{{ resena.puntuacion }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

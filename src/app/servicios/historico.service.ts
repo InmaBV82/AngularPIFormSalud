@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UsuariosService } from './usuarios.service';
-import { Usuario } from '../modelos/Usuario';
 import { HistoricoDTO } from '../modelos/HistoricoDTO';
 
 @Injectable({

@@ -11,7 +11,7 @@
   <div class="row text-center mt-3" *ngFor="let plato of platos">
     <div class="col-md-12">
       <div >
-        <p class="h5 text-primary">Categoría: {{ plato.categoriaNombre }}</p>
+        <p class="h3 text-primary">Categoría: {{ plato.categoriaNombre }}</p>
         {{ plato.id }}<span class="h6"> {{ plato.nombre }}</span>
         <hr>
         <img [src]="'assets/imagenes/' + plato.foto" alt="Imagen de {{ plato.nombre }}" class="img-fluid">
