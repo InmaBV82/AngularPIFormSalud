@@ -25,6 +25,7 @@ export class AddHistoricoComponent implements OnInit{
   fecha = true;
   momentodia = true;
   platoid = true;
+  nombrePlato = true;
 
 
   constructor(

@@ -1,4 +1,4 @@
-  <a class="btn btn-primary ml-0" data-bs-toggle="offcanvas" href="#offcanvas1">Opciones de Perfil</a>  
+  <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvas1">Opciones de Perfil</a>  
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas1">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title">Opciones</h5>
@@ -6,10 +6,10 @@
     </div>
     <div class="offcanvas-body">
       <div class="list-group">
-        <a href="/historico" class="list-group-item list-group-item-action">Mi Histórico</a>
-        <a href="#" class="list-group-item list-group-item-action">Publicar Receta</a>
-        <a href="/ajustes" class="list-group-item list-group-item-action">Ajustes de Perfil</a>
-        <a href="#" class="list-group-item list-group-item-action" data-bs-toggle="collapse" data-bs-target="#respuesta" aria-expanded="true"
+        <a  href="/historico" class="list-group-item list-group-item-action">Mi Histórico</a>
+        <a  href="/addPlato" class="list-group-item list-group-item-action">Publicar Receta</a>
+        <a  href="/ajustes" class="list-group-item list-group-item-action">Ajustes de Perfil</a>
+        <a  href="#" class="list-group-item list-group-item-action" data-bs-toggle="collapse" data-bs-target="#respuesta" aria-expanded="true"
         aria-controls="respuesta" (click)="cargarResenas()">Mis Reseñas</a>
         <div>
           <app-resena [resenas]="resenas"></app-resena> 

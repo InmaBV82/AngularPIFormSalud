@@ -3,21 +3,29 @@
         <h1 class="text-secondary">Mi Histórico de Comidas</h1>
 
         <table class="table table-hover">
-            <thead>
+            <thead class="text-center">
                 <tr class="table-success">
-                    <th scope="row">Fecha</th>
-                    <th scope="row">Momento del Día</th>
-                    <th scope="row">Nombre del plato</th>
-                    <th scope="row">Código de Plato</th>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Momento del Día</th>
+                    <th>Nombre del plato</th>
+                    <th>Código de Plato</th>
+                    <th>Opciones</th>
                 </tr>
             </thead>
 
-            <tbody class="col" *ngFor="let historico of historicos">
+            <tbody class="col text-center" *ngFor="let historico of historicos">
                 <tr class="table-default">
+                    <td>{{ historico.idHistorico }}</td>
                     <td>{{ historico.fecha | date:'dd/MM/yyyy' }}</td>
                     <td>{{ historico.momentodia }}</td>
                     <td>{{ historico.nombrePlato }}</td>
                     <td>{{ historico.platoid }}</td>
+                    <td>
+                        <button class="btn btn-primary me-2" (click)="editarHistorico()">Editar</button>
+                    
+                        <button class="btn btn-danger" (click)="eliminarHistorico(historico.idHistorico)">Eliminar</button></td>
+
                 </tr>
             </tbody>
         </table>

@@ -10,8 +10,9 @@
               <ol class="breadcrumb mt-3">
                 <li class="breadcrumb-item"><a class="menu" routerLink="/"><b>Home</b></a></li>
                 <li class="breadcrumb-item"><a class="menu" routerLink="/tipos"><b>Tipos de Menús</b></a></li>
-                <li class="breadcrumb-item"><a class="menu" *ngIf="comprobar()" routerLink="/perfil"><b>Mi Perfil</b></a></li>
-                <li class="breadcrumb-item"><a class="menu" *ngIf="comprobar()" routerLink="/menuplatos"><b>Menús Diseñados</b></a></li>
+                <li *ngIf="comprobar()" class="breadcrumb-item"><a class="menu" routerLink="/perfil"><b>Mi Perfil</b></a></li>
+                <li *ngIf="comprobar()" class="breadcrumb-item"><a class="menu" routerLink="/menuplatos"><b>Menús Diseñados</b></a></li>
+                <li *ngIf="comprobar()" class="breadcrumb-item"><a class="menu" routerLink="/misPlatos"><b>Mis Platos</b></a></li>
               </ol>
         </div>     
             <div class="d-flex">

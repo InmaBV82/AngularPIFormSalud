@@ -4,6 +4,7 @@ import { HistoricoService } from '../../servicios/historico.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-historico',
@@ -47,4 +48,32 @@ export class HistoricoComponent implements OnInit {
     this.router.navigateByUrl("/addHistorico")
   }
 
+  editarHistorico(){
+
+  }
+
+  eliminarHistorico(idHistorico: number) {
+    this.historicoService.deleteHistorico(idHistorico).subscribe({
+      next: (response) => {
+        this.sweetAlerta();
+        this.router.navigateByUrl('/perfil');
+      },
+      error: (error) => {
+        console.error('Ocurrió un error al eliminar el histórico:', error);
+      }
+    });
+  }
+
+  sweetAlerta(){
+    Swal.fire({
+      title: "ok",
+      text: "Histórico eliminado correctamente",
+      icon: 'success',
+      confirmButtonText:'Cool'
+    });
+  }
+
 }
+  
+
+

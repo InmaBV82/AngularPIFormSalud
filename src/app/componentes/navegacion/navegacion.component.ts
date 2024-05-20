@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { UsuariosService } from '../../servicios/usuarios.service';
 import { Usuario } from '../../modelos/Usuario';
-import { AjustesService } from '../../servicios/ajustes.service';
 
 @Component({
   selector: 'app-navegacion',
@@ -14,34 +13,24 @@ import { AjustesService } from '../../servicios/ajustes.service';
 })
 export class NavegacionComponent implements OnInit{
 
-  usuario!: Usuario | null
+  usuario!: Usuario | undefined
   usuarioId!: number
   
-  constructor(private usuarioService:UsuariosService, private ajustesService:AjustesService ){
+  constructor(private usuarioService:UsuariosService ){
 
   }
 
+/*Suscribirse al Observable en los componentes que necesito acceder al estado del usuario
+o reaccionar a cambios en dicho estado.*/
   ngOnInit(): void {
-    this.usuarioId = this.usuarioService.getUserId();
-    this.cargarUsuario();//si lo comento no accede al nombre y si en el html quito ? tampoco
-  }
-
-  cargarUsuario(): void{
-    if (this.usuarioId) {
-      this.ajustesService.getUsuario().subscribe({
-        next: (data) => {
-          this.usuario = data;
-          console.log(this.usuario)
-        },
-        error: (error: any) => {
-          console.error('Error al obtener los datos del usuario:', error);
-          
+    this.usuarioService.getUserObservable().subscribe(
+      (user: Usuario | undefined)=>{
+        if(user && user.id){
+          this.usuarioId=user.id
         }
-      });
-    } else {
-      console.error('No se pudo obtener el ID del usuario');
-    
-    }
+        this.usuario=user
+      }
+    )
   }
 
   comprobar(): boolean {

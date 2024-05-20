@@ -49,12 +49,13 @@ export class LoginComponent implements OnInit{
       this.usuarioService.loginUsuario(this.formLogin.value).subscribe(
         user =>{
           if(user != null){
+            this.usuarioService.setUser(user)
             this.usuario = user
             this.usuarioService.saveUserId(this.usuario.id)
             this.router.navigateByUrl('/perfil');
           }
           else{
-            this.alertaPersonalizadaError('Error','Email no registrado', 'error')
+            this.alertaPersonalizadaError('Error','Datos Incorrectos', 'error')
           }
         }
 
@@ -65,6 +66,7 @@ export class LoginComponent implements OnInit{
         this.emailValido = false;
       }  
       if(!this.formLogin.controls["password"].valid) {
+        this.passwordValido = false;
       }
 
     }

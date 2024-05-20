@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuPlatoDTO } from '../../modelos/MenuPlatoDTO';
 import { MenuPlatoService } from '../../servicios/menu-plato.service';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { EncabezadoComponent } from '../encabezado/encabezado.component';
 
 
@@ -15,16 +15,23 @@ import { EncabezadoComponent } from '../encabezado/encabezado.component';
 })
 export class MenuPlatoComponent  implements OnInit {
   menuPlatos: MenuPlatoDTO[]=[]
-
-
-
+  userId!:number
   constructor(
-    private menuPlatoService: MenuPlatoService
+    private menuPlatoService: MenuPlatoService,
+    private route: Router
 
-  ) { }
+  ) {  
+    this.cargarMenuPlatos()
+
+  }
 
   ngOnInit(): void {
-    this.cargarMenuPlatos()
+    let session=sessionStorage.getItem('userId')
+    if(session != null){
+      this.userId = Number (session);
+    }else{
+      this.route.navigateByUrl("/inicio")
+    }
   
   }
 

@@ -1,0 +1,45 @@
+<div><button class="btn btn-success mb-3" routerLink="/addPlato">Crear Nuevo Plato</button></div>
+<div class="container mt-5">
+    <!-- Sección para mostrar platos y sus reseñas -->
+    <div class="row text-center mt-3" *ngFor="let plato of platos">
+        <div class="col-md-12">
+            <div>
+                <p class="h3 text-primary">Categoría: {{ plato.categoriaNombre }}</p>
+                {{ plato.id }}<span class="h6"> {{ plato.nombre }}</span>
+                <hr>
+                <img [src]="'assets/imagenes/' + plato.foto" alt="Imagen de {{ plato.nombre }}" class="img-fluid">
+                <!--[src]property binding-->
+                <hr>
+                <br>
+                <p class="h6">Autor plato: {{ plato.autor }}</p>
+                <hr>
+                <p style="text-align: justify;">Ingredientes: {{ plato.ingredientes }}</p>
+                <br>
+                <p style="text-align: justify;">Descripción: {{ plato.descripcion }}</p>
+                <br>
+                <p>Minutos: {{ plato.tiempo }}</p>
+
+            </div>
+
+            <!-- Tabla para mostrar las reseñas -->
+            <table class="table table-hover table-bordered mt-2">
+                <thead class="table-secondary">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Autor reseña</th>
+                        <th>Comentario</th>
+                        <th>Puntuación</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let resena of plato.resenas">
+                        <td>{{ resena.fecha }}</td>
+                        <td>{{ resena.autor }}</td>
+                        <td>{{ resena.comentario }}</td>
+                        <td>{{ resena.puntuacion }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+  

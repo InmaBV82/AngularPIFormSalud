@@ -4,12 +4,12 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { ResenaService } from '../../servicios/resena.service';
 import { CommonModule } from '@angular/common';
 import { ResenaComponent } from '../resena/resena.component';
-import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-panel-desplegable',
   standalone: true,
-  imports: [CommonModule, ResenaComponent],
+  imports: [CommonModule, ResenaComponent, RouterModule],
   templateUrl: './panel-desplegable.component.html',
   styleUrl: './panel-desplegable.component.css'
 })

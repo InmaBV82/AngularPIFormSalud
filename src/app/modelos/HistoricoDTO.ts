@@ -1,5 +1,7 @@
 export interface HistoricoDTO{
 
+    idHistorico: number;
+    
     fecha:Date;
 
     momentodia:String;
