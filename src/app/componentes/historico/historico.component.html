@@ -22,7 +22,7 @@
                     <td>{{ historico.nombrePlato }}</td>
                     <td>{{ historico.platoid }}</td>
                     <td>
-                        <button class="btn btn-primary me-2" (click)="editarHistorico()">Editar</button>
+                        <button class="btn btn-primary me-2" (click)="editarHistorico(historico.idHistorico)">Editar</button>
                     
                         <button class="btn btn-danger" (click)="eliminarHistorico(historico.idHistorico)">Eliminar</button></td>
 

@@ -26,6 +26,7 @@ export class AddPlatoComponent implements OnInit{
 
   nombre = true;
   descripcion = true;
+  //foto = true;
   ingredientes = true;
   tiempo = true;
   categoriaid = true;
@@ -42,6 +43,7 @@ export class AddPlatoComponent implements OnInit{
     this.platoForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
+      //foto: '',
       ingredientes: ['', Validators.required],
       tiempo: ['', Validators.required],
       categoriaid:  ['', Validators.required]
@@ -61,6 +63,7 @@ export class AddPlatoComponent implements OnInit{
     console.log(this.platoForm.value)
     this.nombre = true;
     this.descripcion = true;
+    //this.foto = true;
     this.ingredientes = true;
     this.tiempo = true;
     this.categoriaid = true;
@@ -85,6 +88,9 @@ export class AddPlatoComponent implements OnInit{
         if(!this.platoForm.controls["descripcion"].valid) {
           this.descripcion = false;
         }  
+       /*  if(!this.platoForm.controls["foto"].valid) {
+          this.foto = false;
+        } */
         if(!this.platoForm.controls["ingredientes"].valid) {
           this.ingredientes = false;
         }
@@ -109,7 +115,7 @@ cargarCategorias(): void {
 }
 
 volver() {
-  this.router.navigate(['/misPlatos']);
+  this.router.navigateByUrl('/misPlatos');
 }
 
 alertaPersonalizadaOK(title:string, text:string, confirmButtonText:string){

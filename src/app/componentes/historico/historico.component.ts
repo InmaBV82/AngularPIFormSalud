@@ -5,6 +5,7 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Usuario } from '../../modelos/Usuario';
 
 @Component({
   selector: 'app-historico',
@@ -14,6 +15,7 @@ import Swal from 'sweetalert2';
   styleUrl: './historico.component.css'
 })
 export class HistoricoComponent implements OnInit {
+  usuario!: Usuario | undefined
   usuarioId!: number
   historicos: HistoricoDTO[]=[]
 
@@ -26,6 +28,16 @@ export class HistoricoComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioId = this.usuarioService.getUserId();
+    /*Suscribirse al Observable en los componentes que necesito acceder al estado del usuario
+o reaccionar a cambios en dicho estado.*/
+this.usuarioService.getUserObservable().subscribe(
+  (user: Usuario | undefined)=>{
+    if(user && user.id){
+      this.usuarioId=user.id
+    }
+    this.usuario=user
+  }
+)
     this.cargarHistoricosUsuario()
   
   }
@@ -48,8 +60,8 @@ export class HistoricoComponent implements OnInit {
     this.router.navigateByUrl("/addHistorico")
   }
 
-  editarHistorico(){
-
+  editarHistorico(idHistorico: number){
+    this.router.navigateByUrl(`/editHistorico/${idHistorico}`)
   }
 
   eliminarHistorico(idHistorico: number) {

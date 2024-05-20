@@ -21,6 +21,8 @@ export class AjustesComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
+/*Suscribirse al Observable en los componentes que necesito acceder al estado del usuario
+o reaccionar a cambios en dicho estado.*/
     this.usuarioService.getUserObservable().subscribe(
       (user: Usuario | undefined)=>{
         if(user && user.id){
@@ -32,32 +34,11 @@ export class AjustesComponent implements OnInit{
     )
   }
 
-
-
   editarUsuario(){
 
   }
 
- /* eliminarUsuario(usuarioId:number){
-    const confirmacion = confirm('¿Está seguro que desea eliminar este usuario?');
-    if (confirmacion) {
-      this.usuarioService.deleteUsuarioById(usuarioId).subscribe({
-        next: (response) => {
-          console.log('Usuario eliminado correctamente.');
-          this.usuarioService.logout()
-          this.router.navigateByUrl('/inicio');
-        },
-        error: (error) => {
-          console.error('Ocurrió un error al eliminar el usuario:', error);
-        }
-      });
-    }
-
-    this.usuarioService.deleteUsuarioById(usuarioId);
-
-  }*/
-
-
+ 
   eliminarUsuario(){
    /* const confirmacion = confirm('¿Está seguro que desea eliminar este usuario?');
     if (confirmacion) {*/

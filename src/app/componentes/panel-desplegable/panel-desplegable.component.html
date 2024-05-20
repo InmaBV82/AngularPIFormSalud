@@ -1,7 +1,7 @@
   <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvas1">Opciones de Perfil</a>  
   <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas1">
     <div class="offcanvas-header">
-      <h5 class="offcanvas-title">Opciones</h5>
+      <h5 class="offcanvas-title">Opciones de Perfil</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
     </div>
     <div class="offcanvas-body">
@@ -10,7 +10,7 @@
         <a  href="/addPlato" class="list-group-item list-group-item-action">Publicar Receta</a>
         <a  href="/ajustes" class="list-group-item list-group-item-action">Ajustes de Perfil</a>
         <a  href="#" class="list-group-item list-group-item-action" data-bs-toggle="collapse" data-bs-target="#respuesta" aria-expanded="true"
-        aria-controls="respuesta" (click)="cargarResenas()">Mis Reseñas</a>
+        aria-controls="respuesta" (click)="cargarResenas()">Mis Reseñas<span  id="boton"></span></a>
         <div>
           <app-resena [resenas]="resenas"></app-resena> 
         </div>

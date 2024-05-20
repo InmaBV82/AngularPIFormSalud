@@ -35,7 +35,7 @@ export class UsuariosService {
   
   }
   
-
+//devolver el observable para los componentes que necesito 
   getUserObservable(): Observable<Usuario | undefined>{
     return this.user$.asObservable();
 
@@ -81,28 +81,6 @@ export class UsuariosService {
     }
 
 
-
-  
-//Autenticacion login
- /* login(email: string, password: string) {
-    let existe: boolean =false
-    for (let usu of this.usuarios) {
-      if (usu.email == email && usu.password == password) {
-        this.usuarioLogueado = usu
-        this.saveUserId(usu.id); 
-        this.router.navigateByUrl('/perfil');
-        existe=true
-        break;
-
-      }
-    }
-    if(!existe){
-      this.alertaPersonalizadaError("Error","Email no registrado","Error" )
-      //alert("Email no registrado")
-    }
-    return this.usuarioLogueado
-  }*/
-
   //GUARDAR USUARIO conviertiendo el id en string para guardarlo en el sessionstorage
   saveUserId(userId: number) {
     sessionStorage.setItem('userId', userId.toString());
@@ -121,12 +99,9 @@ export class UsuariosService {
     this.usuarioLogueado = null;
     sessionStorage.removeItem('userId');// Borra el userId de la sessionStorage
     this.user$.next(undefined) 
-    this.router.navigateByUrl("/login");
+    
   }
 
- /*  getUsuarioLogueado() {
-    return this.usuarioLogueado
-  } */
 
   alertaPersonalizadaError(title:string, text:string, confirmButtonText:string){
     Swal.fire({

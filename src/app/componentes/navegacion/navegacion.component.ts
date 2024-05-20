@@ -1,6 +1,6 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UsuariosService } from '../../servicios/usuarios.service';
 import { Usuario } from '../../modelos/Usuario';
 
@@ -16,7 +16,7 @@ export class NavegacionComponent implements OnInit{
   usuario!: Usuario | undefined
   usuarioId!: number
   
-  constructor(private usuarioService:UsuariosService ){
+  constructor(private usuarioService:UsuariosService, private router: Router ){
 
   }
 
@@ -39,6 +39,7 @@ o reaccionar a cambios en dicho estado.*/
 
   salir(): void {
     sessionStorage.removeItem('userId');
+    this.router.navigateByUrl("/login");
   
   }
 

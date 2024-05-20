@@ -24,6 +24,12 @@ export class HistoricoService {
     return this.http.get<HistoricoDTO[]>(this.apiUrl+ 'historicosUsuario/'+userId);
   }
 
+  //GET/id
+  getUnHistorico(idHistorico:number): Observable<HistoricoDTO> {
+    return this.http.get<HistoricoDTO>(this.apiUrl+ 'historicoDTO/'+idHistorico);
+  }
+
+
   //POST
   addHistoricoUsuario(form: FormGroup) {
     const userId = this.usuarioService.getUserId();
@@ -35,6 +41,14 @@ export class HistoricoService {
   deleteHistorico(idHistorico:number): Observable<HistoricoDTO> {
     return this.http.delete<HistoricoDTO>(this.apiUrl+ 'historicoDelete/'+idHistorico);
 
+  }
+
+  //UPDATE
+  editHistoricoUsuario(id:number,form: FormGroup, ) {
+    let userId = this.usuarioService.getUserId();
+    const historicoUpdate = form.value; // Guardo los valores del formulario para pasarselo a la llamada
+    historicoUpdate.usuarioid=userId
+    return this.http.put(this.apiUrl + 'editHistoricoDTO/' + id, historicoUpdate);
   }
 
 

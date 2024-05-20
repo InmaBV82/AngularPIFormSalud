@@ -18,6 +18,7 @@ export class PerfilComponent implements OnInit{
     
   }
 
+
   ngOnInit(): void {
     let session=sessionStorage.getItem('userId')
       

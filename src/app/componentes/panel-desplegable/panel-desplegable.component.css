@@ -1,14 +1,12 @@
-.sidebar {
-width: 250px;
-position: relative;
-left: -250px;
-top: 0;
-bottom: 0;
-transition: left 0.3s;
-}
+#boton{
+    position: absolute; /* Posiciona el pseudo-elemento relativo al contenedor */
+    width: 10px; /* Ancho del punto */
+    height: 10px; /* Alto del punto */
+    background-color: rgb(211, 20, 151); /* Color del punto */
+    border-radius: 50%; /* Hace que el punto sea circular */
+    top: 50%; /* Centra verticalmente el punto dentro del div */
+    left: 50%; /* Centra horizontalmente el punto dentro del div */
+    transform: translate(-50%, -50%); /* Ajusta la posición para centrar el punto completamente */
 
-.sidebar.active {
-left: 0;
 }
-
 
