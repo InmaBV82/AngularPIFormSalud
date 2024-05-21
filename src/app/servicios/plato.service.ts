@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UsuariosService } from './usuarios.service';
 import { FormGroup } from '@angular/forms';
+import { PlatoAddDTO } from '../modelos/PlatoAddDTO';
 
 
 @Injectable({
@@ -26,16 +27,21 @@ export class PlatoService {
   getPlatosCategoria(categoriaid:number): Observable<PlatoDTO[]> {
     return this.http.get<PlatoDTO[]>(this.apiUrl+ 'platosCategoria/'+categoriaid);
   }
-
+  
   getPlatoDTO(platoid:number): Observable<PlatoDTO> {
     return this.http.get<PlatoDTO>(this.apiUrl+ 'platoDTO/'+platoid);
   }
 
-    //GET
-    getPlatosUsuario(): Observable<PlatoDTO[]> {
-      let userId = this.usuarioService.getUserId();
-      return this.http.get<PlatoDTO[]>(this.apiUrl+ 'platosUsuario/'+userId);
-    }
+  //un platoAddDTO
+  getUnPlatoAddDTO(platoid:number): Observable<PlatoAddDTO> {
+    return this.http.get<PlatoAddDTO>(this.apiUrl+ 'platoAddDTO/'+platoid);
+  }
+
+
+  getPlatosUsuario(): Observable<PlatoDTO[]> {
+    let userId = this.usuarioService.getUserId();
+    return this.http.get<PlatoDTO[]>(this.apiUrl+ 'platosUsuario/'+userId);
+  }
 
   //POST
   addPlatoUsuario(form: FormGroup) {
@@ -44,4 +50,21 @@ export class PlatoService {
     return this.http.post(this.apiUrl + 'addPlatoDTO/' + userId, platoAddData);
 
   }
+
+   //DELETE
+   deletePlato(id:number): Observable<PlatoDTO> {
+    return this.http.delete<PlatoDTO>(this.apiUrl+ 'platoDelete/'+id);
+
+  }
+
+ //UPDATE
+editPlatoUsuario(id:number,form: FormGroup, ) {
+    let userId = this.usuarioService.getUserId();
+    const platoAddUpdate = form.value; // Guardo los valores del formulario para pasarselo a la llamada
+    platoAddUpdate.autorid=userId
+    return this.http.put(this.apiUrl + 'editPlatoAddDTO/' + id, platoAddUpdate);
+  } 
+
+
+
 }

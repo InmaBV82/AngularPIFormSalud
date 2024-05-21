@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlatoDTO } from '../../../modelos/PlatoDTO';
 import { PlatoService } from '../../../servicios/plato.service';
-import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf, DatePipe } from '@angular/common';
 import { ResenaDTO } from '../../../modelos/ResenaDTO';
 import { UsuariosService } from '../../../servicios/usuarios.service';
 import { Router, RouterLink } from '@angular/router';
@@ -11,7 +11,7 @@ import { Usuario } from '../../../modelos/Usuario';
 @Component({
   selector: 'app-list-platos-usu',
   standalone: true,
-  imports: [CommonModule, NgIf, NgFor, RouterLink],
+  imports: [CommonModule, NgIf, NgFor, RouterLink, DatePipe],
   templateUrl: './list-platos-usu.component.html',
   styleUrl: './list-platos-usu.component.css'
 })
@@ -24,7 +24,8 @@ export class ListPlatosUsu implements OnInit{
 
   constructor(
     private usuarioService: UsuariosService,
-    private platoService: PlatoService
+    private platoService: PlatoService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -55,14 +56,28 @@ o reaccionar a cambios en dicho estado.*/
 
     }
   }
+  editarPlato(id: number){
+    this.router.navigateByUrl(`/editPlato/${id}`)
+  }
 
+  eliminarPlato(id: number) {
+    this.platoService.deletePlato(id).subscribe({
+      next: (response) => {
+        this.sweetAlerta();
+        this.router.navigateByUrl('/perfil');
+      },
+      error: (error) => {
+        console.error('Ocurrió un error al eliminar el plato:', error);
+      }
+    });
+  }
 
-  alertaPersonalizadaError(title:string, text:string, confirmButtonText:string){
+  sweetAlerta(){
     Swal.fire({
-      title:title,
-      text: text,
-      icon: 'error',
-      confirmButtonText:confirmButtonText
+      title: "ok",
+      text: "Plato eliminado correctamente",
+      icon: 'success',
+      confirmButtonText:'Cool'
     });
   }
 }

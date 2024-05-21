@@ -41,7 +41,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let resena of plato.resenas">
-              <td>{{ resena.fecha }}</td>
+              <td>{{ resena.fecha | date:'dd/MM/yyyy' }}</td>
               <td>{{ resena.autor }}</td>
               <td>{{ resena.comentario }}</td>
               <td>{{ resena.puntuacion }}</td>

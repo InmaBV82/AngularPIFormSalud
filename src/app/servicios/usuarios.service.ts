@@ -77,7 +77,7 @@ export class UsuariosService {
 
   //DELETE
   deleteUsuarioById(usuarioId:number): Observable<Usuario> {
-      return this.http.delete<Usuario>(this.apiUrl+ 'usuario/'+usuarioId);
+      return this.http.delete<Usuario>(this.apiUrl+ 'usuarioDelete/'+usuarioId);
     }
 
 

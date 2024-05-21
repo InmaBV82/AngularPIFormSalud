@@ -20,6 +20,10 @@
                 <p>Minutos: {{ plato.tiempo }}</p>
 
             </div>
+            <button class="btn btn-primary me-2" (click)="editarPlato(plato.id)">Editar Plato</button>
+                    
+            <button class="btn btn-danger" (click)="eliminarPlato(plato.id)">Eliminar Plato</button>
+
 
             <!-- Tabla para mostrar las reseñas -->
             <table class="table table-hover table-bordered mt-2">
@@ -33,7 +37,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let resena of plato.resenas">
-                        <td>{{ resena.fecha }}</td>
+                        <td>{{ resena.fecha | date:'dd/MM/yyyy' }}</td>
                         <td>{{ resena.autor }}</td>
                         <td>{{ resena.comentario }}</td>
                         <td>{{ resena.puntuacion }}</td>

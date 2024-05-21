@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { CommonModule, DatePipe, NgFor, NgIf } from '@angular/common';
 import { ListadoCategoriaService } from '../../servicios/listado-categoria.service';
 import { PlatoService } from '../../servicios/plato.service';
 import { ResenaService } from '../../servicios/resena.service';
@@ -11,7 +11,7 @@ import { Usuario } from '../../modelos/Usuario';
 @Component({
   selector: 'app-listado-categorias',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf],
+  imports: [CommonModule, NgFor, NgIf, DatePipe],
   templateUrl: './listado-categorias.component.html',
   styleUrl: './listado-categorias.component.css'
 })

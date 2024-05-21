@@ -15,6 +15,8 @@ export interface PlatoAddDTO{
     categoriaid: number;
     
     categoriaNombre: String;
+
+    autorid: string;
 	
 
 
