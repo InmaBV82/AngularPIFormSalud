@@ -13,6 +13,8 @@ import { AddPlatoComponent } from './componentes/plato/add-plato/add-plato/add-p
 import { ListPlatosUsu } from './componentes/plato/list-platos-usu/list-platos-usu.component';
 import { EditHistoricoComponent } from './componentes/historico/edit-historico/edit-historico.component';
 import { EditPlatoComponent } from './componentes/plato/edit-plato/edit-plato.component';
+import { AddResenaComponent } from './componentes/resena/add-resena/add-resena/add-resena.component';
+import { EditResenaComponent } from './componentes/resena/edit-resena/edit-resena.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent},
@@ -28,5 +30,7 @@ export const routes: Routes = [
     { path: 'misPlatos', component: ListPlatosUsu},
     { path: 'addPlato', component: AddPlatoComponent},
     { path: 'editPlato/:id', component: EditPlatoComponent},
+    { path: 'addResena', component: AddResenaComponent},
+    { path: 'editResena/:id', component: EditResenaComponent},
     { path : '**', component: InicioComponent},
 ];

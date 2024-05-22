@@ -1,5 +1,5 @@
-<h1 class="text-secondary">Reseña Nueva</h1>
-<form [formGroup]="resenaForm" (ngSubmit)="agregarResena()">
+<h1 class="text-secondary">Modificar Reseña</h1>
+<form [formGroup]="resenaForm" (ngSubmit)="editarResena()">
     <div class="mb-3">
       <label for="comentario" class="form-label">Comentario</label>
       <textarea class="form-control" id="comentario" formControlName="comentario" ></textarea>
@@ -13,11 +13,11 @@
       <input type="number" class="form-control" id="puntuacion" formControlName="puntuacion" max="10">
     </div>
     <div class="mb-3">
-        <label for="platoId" class="form-label">Plato</label>
-        <select class="form-select" formControlName="platoId">
-          <option *ngFor="let plato of platos" [value]="plato.id">{{ plato.nombre }}</option>
-        </select>
-      </div>
+      <p class="form-label">Plato</p>
+      <ul>
+        <li>{{ resena.platoId }}</li>
+      </ul>
+    </div>
     <button type="submit" class="btn btn-primary">Guardar</button>
     <button class="btn btn-secondary ms-2" (click)="volver()">Atrás</button>
 </form>

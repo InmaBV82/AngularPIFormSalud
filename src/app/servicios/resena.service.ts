@@ -3,6 +3,8 @@ import { ResenaDTO } from '../modelos/ResenaDTO';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { UsuariosService } from './usuarios.service';
+import { ResenaAddDTO } from '../modelos/ResenaAddDTO';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -28,9 +30,32 @@ export class ResenaService {
     return this.http.get<ResenaDTO[]>(this.apiUrl+ 'resenasUsuario/'+userId);
   }
 
-
-  //POST
-  addResena(resena: any) {
-    return this.http.post(this.apiUrl, resena);
+  //una resenaAddDTO
+  getUnaResenaAddDTO(id:number): Observable<ResenaAddDTO> {
+    return this.http.get<ResenaAddDTO>(this.apiUrl+ 'resenaAddDTO/'+id);
   }
+
+
+ //POST
+ addResenaUsuario(form: FormGroup) {
+  let userId = this.usuarioService.getUserId();
+  const resenaAddData = form.value; // Guardo los valores del formulario para pasarselo a la llamada
+  return this.http.post(this.apiUrl + 'resenaAddDto/' + userId, resenaAddData);
+
+}
+
+ //DELETE
+deleteResena(id:number): Observable<ResenaDTO> {
+  return this.http.delete<ResenaDTO>(this.apiUrl+ 'resenaDelete/'+id);
+
+}
+
+//UPDATE
+editResena(id:number,form: FormGroup, ) {
+  let userId = this.usuarioService.getUserId();
+  const resenaAddUpdate = form.value; // Guardo los valores del formulario para pasarselo a la llamada
+  resenaAddUpdate.autorId=userId
+  return this.http.put(this.apiUrl + 'editResenaAddDto/' + id, resenaAddUpdate);
+} 
+
 }

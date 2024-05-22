@@ -80,40 +80,6 @@ export class EditHistoricoComponent implements OnInit{
   }
 
 
-/* 
-  editarHistorico() {
-    this.fecha = true;
-    this.momentodia = true;
-    this.platoid = true;
-    
-    if(this.historicoForm.valid){
-      this.historicoService.editHistoricoUsuario(this.historicoForm).subscribe({
-        error: (e)=>{
-          this.alertaPersonalizadaError("Error","Error al editar el Histórico","Error" )
-        },
-        next: (n) =>{
-          this.router.navigateByUrl('/historico');
-          this.alertaPersonalizadaOK("OK","Histórico modificado correctamente","Confirm" )
-          
-        }
-      });
-        
-      }else{
-
-        if (!this.historicoForm.controls["fecha"].valid) {
-          this.fecha = false;
-        } 
-        if(!this.historicoForm.controls["momentodia"].valid) {
-          this.momentodia = false;
-        }  
-        if(!this.historicoForm.controls["platoid"].valid) {
-          this.platoid = false;
-        }
-
-
-      }
-
-  }*/
 
   alertaPersonalizadaOK(title:string, text:string, confirmButtonText:string){
     Swal.fire({

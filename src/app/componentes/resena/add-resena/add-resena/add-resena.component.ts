@@ -1,119 +1,129 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HistoricoService } from '../../../../servicios/historico.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
-import { PlatoService } from '../../../../servicios/plato.service';
+import { ResenaService } from '../../../../servicios/resena.service';
 import { UsuariosService } from '../../../../servicios/usuarios.service';
+import { Categoria } from '../../../../modelos/Categoria';
+import { ListadoCategoriaService } from '../../../../servicios/listado-categoria.service';
+import { ResenaAddDTO } from '../../../../modelos/ResenaAddDTO';
 import { PlatoDTO } from '../../../../modelos/PlatoDTO';
+import { PlatoService } from '../../../../servicios/plato.service';
 
 
 @Component({
-  selector: 'app-add-historico',
+  selector: 'app-add-resena',
   standalone: true,
   imports: [ReactiveFormsModule,FormsModule, CommonModule],
-  templateUrl: './add-historico.component.html',
-  styleUrl: './add-historico.component.css'
+  templateUrl: './add-resena.component.html',
+  styleUrl: './add-resena.component.css'
 })
-export class AddHistoricoComponent implements OnInit{
+export class AddResenaComponent implements OnInit{
 
   usuarioId!: number
   platos: PlatoDTO[]=[]
-  historicoForm!: FormGroup;
+  resenaForm!: FormGroup;
 
+  comentario = true;
   fecha = true;
-  momentodia = true;
-  platoid = true;
-  nombrePlato = true;
+  puntuacion = true;
+  platoId = true;
 
 
   constructor(
     private formBuilder: FormBuilder,
-    private historicoService: HistoricoService,
-    private router: Router,
+    private resenaService: ResenaService,
     private platoService: PlatoService,
+    private router: Router,
     private usuarioService: UsuariosService
   ) {
-    this.historicoForm = this.formBuilder.group({
+    
+    this.resenaForm = this.formBuilder.group({
+      comentario: ['', Validators.required],
       fecha: ['', Validators.required],
-      momentodia: ['', Validators.required],
-      platoid: ['', Validators.required],
+      puntuacion: ['', Validators.required],
+      platoId:  ['', Validators.required]
 
     });
+    
   }
+
   ngOnInit(): void {
     this.usuarioId = this.usuarioService.getUserId();
     this.cargarPlatos();
+    
   }
 
 
-  agregarHistorico() {
+  agregarResena() {
+    //console.log(this.resenaForm.value)
+    this.comentario = true;
     this.fecha = true;
-    this.momentodia = true;
-    this.platoid = true;
-    
+    this.puntuacion = true;
+    this.platoId = true;
 
-    
-    if(this.historicoForm.valid){
-      this.historicoService.addHistoricoUsuario(this.historicoForm).subscribe({
+    if(this.resenaForm.valid){
+      this.resenaService.addResenaUsuario(this.resenaForm).subscribe({
         error: (e)=>{
-          this.alertaPersonalizadaError("Error","Error al crear el Histórico","Error" )
+          this.alertaPersonalizadaError("Error","Error al crear la resena","Error" )
         },
-        next: (n) =>{
-          this.router.navigateByUrl('/historico');
-          this.alertaPersonalizadaOK("OK","Histórico creado correctamente","Confirm" )
+        next: (e) =>{
+          this.router.navigateByUrl('/perfil');
+          this.alertaPersonalizadaOK("OK","Reseña creado correctamente","Confirm" )
           
         }
       });
         
       }else{
 
-        if (!this.historicoForm.controls["fecha"].valid) {
-          this.fecha = false;
+        if (!this.resenaForm.controls["comentario"].valid) {
+          this.comentario = false;
         } 
-        if(!this.historicoForm.controls["momentodia"].valid) {
-          this.momentodia = false;
+        if(!this.resenaForm.controls["fecha"].valid) {
+          this.fecha = false;
         }  
-        if(!this.historicoForm.controls["platoid"].valid) {
-          this.platoid = false;
+        if(!this.resenaForm.controls["puntuacion"].valid) {
+          this.puntuacion = false;
         }
-
+        if(!this.resenaForm.controls["platoId"].valid) {
+          this.platoId = false;
+        }
 
       }
 
   }
-  alertaPersonalizadaOK(title:string, text:string, confirmButtonText:string){
-    Swal.fire({
-      title:title,
-      text: text,
-      icon: 'success',
-      confirmButtonText:confirmButtonText
-    });
-}
 
-alertaPersonalizadaError(title:string, text:string, confirmButtonText:string){
+  cargarPlatos(): void {
+    this.platoService.getTodoslosPlatos().subscribe({
+      next: (data: PlatoDTO[]) => {
+        this.platos = data;
+      },
+      error: (err) => console.error('Error al cargar platos', err)
+    });
+  }
+  
+  volver() {
+    this.router.navigate(['/perfil']);
+  }
+  
+alertaPersonalizadaOK(title:string, text:string, confirmButtonText:string){
   Swal.fire({
     title:title,
     text: text,
-    icon: 'error',
+    icon: 'success',
     confirmButtonText:confirmButtonText
   });
 }
 
-cargarPlatos(): void {
-  this.platoService.getTodoslosPlatos().subscribe({
-    next: (data: PlatoDTO[]) => {
-      this.platos = data;
-    },
-    error: (err) => console.error('Error al cargar plato', err)
-  });
+alertaPersonalizadaError(title:string, text:string, confirmButtonText:string){
+Swal.fire({
+  title:title,
+  text: text,
+  icon: 'error',
+  confirmButtonText:confirmButtonText
+});
 }
-
-volver() {
-  this.router.navigate(['/historico']);
-}
-
 
 
 

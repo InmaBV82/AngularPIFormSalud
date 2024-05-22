@@ -7,6 +7,9 @@
                     <p class="accordion-text"><small class="text-muted">Fecha: {{ resena.fecha | date:'dd/MM/yyyy' }}</small></p>
                     <p class="accordion-text">{{ resena.comentario }}</p>
                     <p class="accordion-text"><small class="text-muted">Puntuación: {{ resena.puntuacion }} estrellas</small></p>
+                    <div>
+                        <button class="btn btn-primary btn-sm m-2" (click)="editarResena(resena.id)">Editar Reseña</button>
+                    </div>
                 </div>
             </div>
         </div>

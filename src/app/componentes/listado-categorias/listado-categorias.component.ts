@@ -7,6 +7,7 @@ import { Categoria } from '../../modelos/Categoria';
 import { PlatoDTO } from '../../modelos/PlatoDTO';
 import { ResenaDTO } from '../../modelos/ResenaDTO';
 import { Usuario } from '../../modelos/Usuario';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado-categorias',
@@ -25,6 +26,7 @@ export class ListadoCategoriasComponent implements OnInit {
     private listadoService: ListadoCategoriaService,
     private platoService: PlatoService,
     private resenaService: ResenaService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -70,15 +72,13 @@ export class ListadoCategoriasComponent implements OnInit {
   
   }
 
-  comprobar(): boolean {
-    return sessionStorage.getItem('userId') !== null;
-  }
+comprobar(): boolean {
+  return sessionStorage.getItem('userId') !== null;
+}
 
-  
-  crearResenas(){
-      
-  }
-
+addResena(){
+    this.router.navigateByUrl("/addResena")
+}
 
 
 

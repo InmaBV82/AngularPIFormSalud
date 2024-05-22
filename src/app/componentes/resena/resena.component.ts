@@ -1,6 +1,7 @@
 import { Component, Input  } from '@angular/core';
 import { ResenaDTO } from '../../modelos/ResenaDTO';
 import { CommonModule, DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,12 @@ import { CommonModule, DatePipe } from '@angular/common';
 export class ResenaComponent {
   @Input() resenas: ResenaDTO[]=[];
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  editarResena(id:number){
+    this.router.navigateByUrl(`/editResena/${id}`)
+
+  }
 
 }
   
