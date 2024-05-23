@@ -15,6 +15,7 @@ import { EditHistoricoComponent } from './componentes/historico/edit-historico/e
 import { EditPlatoComponent } from './componentes/plato/edit-plato/edit-plato.component';
 import { AddResenaComponent } from './componentes/resena/add-resena/add-resena/add-resena.component';
 import { EditResenaComponent } from './componentes/resena/edit-resena/edit-resena.component';
+import { TodasResenasAdminComponent } from './componentes/resena/todas-resenas-admin/todas-resenas-admin.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent},
@@ -32,5 +33,6 @@ export const routes: Routes = [
     { path: 'editPlato/:id', component: EditPlatoComponent},
     { path: 'addResena', component: AddResenaComponent},
     { path: 'editResena/:id', component: EditResenaComponent},
+    { path: 'todasResenas', component: TodasResenasAdminComponent},
     { path : '**', component: InicioComponent},
 ];

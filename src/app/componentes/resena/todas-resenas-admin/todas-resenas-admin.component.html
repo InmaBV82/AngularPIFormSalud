@@ -1,0 +1,20 @@
+<!-- Sección de reseñas -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div *ngFor="let resena of resenas" class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <p class="text-muted mb-0"><small>Fecha: {{ resena.fecha | date:'dd/MM/yyyy' }}</small></p>
+                        <button class="btn btn-danger btn-sm" (click)="eliminarResena(resena.id)">Eliminar
+                            Reseña</button>
+                    </div>
+                    <p class="card-text">{{ resena.comentario }}</p>
+                    <p class="text-muted mb-0"><small>Puntuación: {{ resena.puntuacion }} estrellas</small></p>
+                    <p class="text-muted mb-0"><small>Autor reseña: {{ resena.autorId }}</small></p>
+                    <p class="text-muted mb-0"><small>Código del Plato: {{ resena.platoId }}</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -20,6 +20,10 @@ export class ResenaService {
   }
 
   //GET
+  getResenas(): Observable<ResenaAddDTO[]> {
+    return this.http.get<ResenaAddDTO[]>(this.apiUrl+ 'resenaAddDTO');
+  }
+
   getResenasPlato(platoid:number): Observable<ResenaDTO[]> {
     return this.http.get<ResenaDTO[]>(this.apiUrl+ 'resenasPlato/'+platoid);
   }

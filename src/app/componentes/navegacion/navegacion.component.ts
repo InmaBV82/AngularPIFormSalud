@@ -43,6 +43,17 @@ o reaccionar a cambios en dicho estado.*/
   
   }
 
+  
+  comprobarAdmin(){
+    if(this.usuarioId == 1){
+
+      return true;
+    }
+
+    return false;
+
+  }
+
 }
 
 

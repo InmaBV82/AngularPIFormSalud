@@ -1,0 +1,28 @@
+
+.card {
+    border: none;
+    border-radius: 0.75rem;
+}
+
+.card-body {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+}
+
+.card-text {
+    font-size: 1.1rem;
+    color: #343a40;
+}
+
+.text-muted small {
+    font-size: 0.9rem;
+}
+
+.btn-danger {
+    font-size: 0.8rem;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
