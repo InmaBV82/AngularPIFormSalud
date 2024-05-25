@@ -32,6 +32,7 @@ o reaccionar a cambios en dicho estado.*/
       }
       
     )
+    
   }
 
   editarUsuario(){

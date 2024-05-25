@@ -17,7 +17,7 @@ export class MenuPlatoService {
   }
 
   //GET
-  getMenuPlato(): Observable<MenuPlatoDTO[]> {
-    return this.http.get<MenuPlatoDTO[]>(this.apiUrl+ "menuPlatosDTO");
+  obtenerMenuPlatos(): Observable<any> {
+    return this.http.get<any>(this.apiUrl+ "menuPlatosDTO");
   }
 }

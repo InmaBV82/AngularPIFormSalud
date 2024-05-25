@@ -14,14 +14,14 @@ import { EncabezadoComponent } from '../encabezado/encabezado.component';
   styleUrl: './menu-plato.component.css'
 })
 export class MenuPlatoComponent  implements OnInit {
-  menuPlatos: MenuPlatoDTO[]=[]
+  menus: any[] = [];
   userId!:number
   constructor(
     private menuPlatoService: MenuPlatoService,
     private route: Router
 
   ) {  
-    this.cargarMenuPlatos()
+    
 
   }
 
@@ -32,17 +32,25 @@ export class MenuPlatoComponent  implements OnInit {
     }else{
       this.route.navigateByUrl("/inicio")
     }
-  
-  }
 
-  cargarMenuPlatos(): void {
-    this.menuPlatoService.getMenuPlato().subscribe({
-      next: (menuPlatos) => {
-        this.menuPlatos = menuPlatos;
-      },
-      error: (err) => console.error('Error al cargar los menús con los platos', err)
+    this.menuPlatoService.obtenerMenuPlatos().subscribe((data: any) => {
+      this.menus = data; // Suponiendo que tu servicio devuelve el objeto JSON directamente
     });
   }
+  
+  
+
+
+ /*  cargarMenuPlatos(): void {
+    this.menuPlatoService.obtenerMenuPlatos().subscribe({
+      next: (menus) => {
+        // Convertir el objeto en un array
+        this.menus = Object.values(menus);
+      },
+      error: (error) => console.error('Error al cargar los menús con los platos', error)
+    });
+  } */
+
 
 
 }

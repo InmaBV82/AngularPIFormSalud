@@ -10,12 +10,12 @@
   <!-- Sección para mostrar platos y sus reseñas -->
   <div class="row text-center mt-3" *ngFor="let plato of platos">
     <div class="col-md-12">
-      <div >
+      <div>
         <p class="h3 text-primary">Categoría: {{ plato.categoriaNombre }}</p>
         {{ plato.id }}<span class="h6"> {{ plato.nombre }}</span>
         <hr>
         <img [src]="'assets/imagenes/' + plato.foto" alt="Imagen de {{ plato.nombre }}" class="img-fluid">
-    <!--[src]property binding-->
+        <!--[src]property binding-->
         <hr>
         <br>
         <p class="h6">Autor plato: {{ plato.autor }}</p>
@@ -29,24 +29,35 @@
       </div>
 
       <!-- Tabla para mostrar las reseñas -->
-      <button *ngIf="comprobar()" type="button" class="btn btn-primary btn-md shadow-sm px-2" (click)="addResena()">Añadir Reseña</button>
-        <table class="table table-hover table-bordered mt-2">
-          <thead class="table-secondary">
-            <tr>
-              <th>Fecha</th>
-              <th>Autor reseña</th>
-              <th>Comentario</th>
-              <th>Puntuación</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let resena of plato.resenas">
-              <td>{{ resena.fecha | date:'dd/MM/yyyy' }}</td>
-              <td>{{ resena.autor }}</td>
-              <td>{{ resena.comentario }}</td>
-              <td>{{ resena.puntuacion }}</td>
-            </tr>
-          </tbody>
-        </table>
+      <button *ngIf="comprobar()" type="button" class="btn btn-primary btn-md shadow-sm px-2"
+        (click)="addResena()">Añadir Reseña</button>
+      <table class="table table-hover table-bordered mt-2">
+        <thead class="table-secondary">
+          <tr>
+            <th>Fecha</th>
+            <th>Autor reseña</th>
+            <th>Comentario</th>
+            <th>Puntuación</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let resena of plato.resenas">
+            <td>{{ resena.fecha | date:'dd/MM/yyyy' }}</td>
+            <td>{{ resena.autor }}</td>
+            <td>{{ resena.comentario }}</td>
+            <td>{{ resena.puntuacion }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-</div>
+  </div>
+
+  <!-- Controles de paginación -->
+ <!--  <div class="row text-center mt-3">
+    <div class="col">
+      <button (click)="previousPage()" [disabled]="currentPage === 1" class="btn btn-primary">Anterior</button>
+      <span>Página {{ currentPage }} de {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="btn btn-primary">Siguiente</button>
+    </div>
+  </div>
+</div> -->

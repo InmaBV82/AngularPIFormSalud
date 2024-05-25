@@ -1,31 +1,22 @@
 <app-encabezado></app-encabezado>
-<div class="container mt-5">
-    <div class="row text-center">
-        <h1 class="text-secondary">Menús Diseñados</h1>
+<div class="container">
+    <div class="row">
+        <h1 class="text-secondary text-center">Menús Diseñados</h1>
+        <div class="col">
+            <div *ngFor="let menu of menus | keyvalue" class="mb-4">
+                <h2 class="text-info">{{ menu.value[0].nombreMenu }}</h2>
+                <div class="list-group">
+                    <div *ngFor="let plato of menu.value" class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ plato.nombrePlato }} <a class="m-2"
+                                    [routerLink]="['/detalle-plato', plato.platoid]"> ver </a></h5>
 
-        <table class="table table-hover">
-            <thead>
-                <tr class="table-info">
-                    <th scope="row">Momento del Día</th>
-                    <th scope="row">Nombre del Plato</th>
-                    <th scope="row">Código de Plato</th>
-                    <th scope="row">Nombre del Menú</th>
-                    <th scope="row">Código del Menú</th>
-                    <th scope="row">Tipo de Menú</th>
-                </tr>
-            </thead>
-
-            <tbody class="col" *ngFor="let menuPlato of menuPlatos">
-                <tr class="table-default">
-                    <td>{{ menuPlato.momentodia }}</td>
-                    <td>{{ menuPlato.nombrePlato }}</td>
-                    <td><a [routerLink]="['/detalle-plato', menuPlato.platoid]">{{ menuPlato.platoid }}</a></td>
-                    <td>{{ menuPlato.nombreMenu }}</td>
-                    <td>{{ menuPlato.menuid }}</td>
-                    <td>{{ menuPlato.tipoMenu }}</td>
-                </tr>
-            </tbody>
-        </table>
-
+                            <small>{{ plato.momentodia }}</small>
+                        </div>
+                        <p class="mb-1">{{ plato.tipoMenu }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
