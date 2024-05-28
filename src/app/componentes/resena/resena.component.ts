@@ -17,7 +17,7 @@ export class ResenaComponent {
   constructor(private router: Router) {}
 
   editarResena(id:number){
-    this.router.navigateByUrl(`/editResena/${id}`)
+    this.router.navigate(['/editResena', id]);
 
   }
 

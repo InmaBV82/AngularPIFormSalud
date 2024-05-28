@@ -49,6 +49,13 @@ export class EditHistoricoComponent implements OnInit{
 
   
   ngOnInit(): void {
+    let session=sessionStorage.getItem('userId')
+      
+    if(session != null){
+      this.usuarioId = Number (session);
+    }else{
+      this.router.navigateByUrl("/inicio")
+    }
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
       this.historicoService.getUnHistorico(this.id).subscribe({

@@ -4,10 +4,10 @@ import { LoginComponent } from './componentes/login/login.component';
 import { RegistroComponent } from '../app/componentes/registro/registro.component';
 import { PerfilComponent } from '../app/componentes/perfil/perfil.component';
 import { TiposComponent } from '../app/componentes/tipos/tipos.component';
-import { AjustesComponent } from './componentes/ajustes/ajustes.component';
+import { AjustesComponent } from './componentes/ajustes-usuario/ajustes.component';
 import { HistoricoComponent } from './componentes/historico/historico.component';
 import { MenuPlatoComponent } from './componentes/menu-plato/menu-plato.component';
-import { PlatoComponent } from './componentes/plato/plato.component';
+import { DetallePlatoComponent } from './componentes/plato/detalle-plato.component';
 import { AddHistoricoComponent } from './componentes/historico/add-historico/add-historico/add-historico.component';
 import { AddPlatoComponent } from './componentes/plato/add-plato/add-plato/add-plato.component';
 import { ListPlatosUsu } from './componentes/plato/list-platos-usu/list-platos-usu.component';
@@ -25,7 +25,7 @@ export const routes: Routes = [
     { path: 'ajustes', component: AjustesComponent},
     { path: 'historico', component: HistoricoComponent},
     { path: 'menuplatos', component: MenuPlatoComponent},
-    { path: 'detalle-plato/:platoid', component: PlatoComponent},
+    { path: 'detalle-plato/:platoid', component: DetallePlatoComponent},
     { path: 'addHistorico', component: AddHistoricoComponent},
     { path: 'editHistorico/:id', component: EditHistoricoComponent },
     { path: 'misPlatos', component: ListPlatosUsu},

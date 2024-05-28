@@ -53,6 +53,12 @@ export class AddPlatoComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    let session=sessionStorage.getItem('userId')
+    if(session != null){
+      this.usuarioId = Number (session);
+    }else{
+      this.router.navigateByUrl("/inicio")
+    }
     this.usuarioId = this.usuarioService.getUserId();
     this.cargarCategorias();
     

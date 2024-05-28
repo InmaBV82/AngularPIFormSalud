@@ -29,17 +29,14 @@ export class ListPlatosUsu implements OnInit{
   ) { }
 
   ngOnInit(): void {
+    let session=sessionStorage.getItem('userId')
+    if(session != null){
+      this.usuarioId = Number (session);
+    }else{
+      this.router.navigateByUrl("/inicio")
+    }
     this.usuarioId = this.usuarioService.getUserId(); // Obtener el ID del usuario logueado
-  /*Suscribirse al Observable en los componentes que necesito acceder al estado del usuario
-o reaccionar a cambios en dicho estado.*/
-    this.usuarioService.getUserObservable().subscribe(
-      (user: Usuario | undefined)=>{
-        if(user && user.id){
-          this.usuarioId=user.id
-        }
-        this.usuario=user
-      }
-    )
+ 
     this.cargarPlatos();
     
   }

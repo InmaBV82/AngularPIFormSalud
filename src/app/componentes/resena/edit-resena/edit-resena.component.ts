@@ -28,7 +28,7 @@ export class EditResenaComponent implements OnInit{
   comentario = true;
   fecha = true;
   puntuacion = true;
- // platoId = true;
+
 
 
   constructor(
@@ -47,11 +47,16 @@ export class EditResenaComponent implements OnInit{
       platoId: ''
 
     });
-  //  this.cargarPlatos()
     
   }
 
   ngOnInit(): void {
+    let session=sessionStorage.getItem('userId')
+    if(session != null){
+      this.usuarioId = Number (session);
+    }else{
+      this.router.navigateByUrl("/inicio")
+    }
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
       this.resenaService.getUnaResenaAddDTO(this.id).subscribe({
@@ -84,14 +89,6 @@ export class EditResenaComponent implements OnInit{
     }
   }
 
-/* cargarPlatos(): void {
-  this.platoService.getTodoslosPlatos().subscribe({
-    next: (data: PlatoDTO[]) => {
-      this.platos = data;
-    },
-    error: (err) => console.error('Error al cargar plato', err)
-  });
-}  */
 
 volver() {
   this.router.navigateByUrl('/perfil');

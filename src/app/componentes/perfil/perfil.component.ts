@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class PerfilComponent implements OnInit{
   userId!:number
-  constructor(private route: Router){
+  constructor(private router: Router){
     
   }
 
@@ -25,7 +25,7 @@ export class PerfilComponent implements OnInit{
     if(session != null){
       this.userId = Number (session);
     }else{
-      this.route.navigateByUrl("/login")
+      this.router.navigateByUrl("/login")
     }
   }
 

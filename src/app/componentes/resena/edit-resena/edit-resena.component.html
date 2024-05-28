@@ -12,10 +12,10 @@
       <label for="puntuacion" class="form-label">Puntuación</label>
       <input type="number" class="form-control" id="puntuacion" formControlName="puntuacion" max="10">
     </div>
-    <div class="mb-3">
+    <div *ngIf="resena" class="mb-3">
       <p class="form-label">Plato</p>
       <ul>
-        <li>{{ resena?.platoId  }}</li>
+        <li>{{ resena.platoId  }}</li>
       </ul>
     </div>
     <button type="submit" class="btn btn-primary">Guardar</button>

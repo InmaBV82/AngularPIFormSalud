@@ -7,16 +7,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ResenaDTO } from '../../modelos/ResenaDTO';
 
 @Component({
-  selector: 'app-plato',
+  selector: 'app-detalle-plato',
   standalone: true,
   imports: [CommonModule, MenuPlatoComponent, DatePipe],
-  templateUrl: './plato.component.html',
-  styleUrl: './plato.component.css'
+  templateUrl: './detalle-plato.component.html',
+  styleUrl: './detalle-plato.component.css'
 })
-export class PlatoComponent implements OnInit{
+export class DetallePlatoComponent implements OnInit{
   platoid!: number |null;
   plato!: PlatoDTO; 
   resenas: ResenaDTO[]=[];
+  userId!: number;
 
   constructor(
     private route: ActivatedRoute,
@@ -25,6 +26,12 @@ export class PlatoComponent implements OnInit{
   ) { }
 
   ngOnInit(): void {
+    let session=sessionStorage.getItem('userId')
+    if(session != null){
+      this.userId = Number (session);
+    }else{
+      this.router.navigateByUrl("/inicio")
+    }
     this.route.paramMap.subscribe(params => {
       const id = params.get('platoid');
       if (id) {

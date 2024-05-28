@@ -23,6 +23,7 @@ export class EditPlatoComponent implements OnInit{
   usuarioId!: number
   categorias: Categoria[]=[]
   platoForm!: FormGroup;
+  userId!: number;
 
   nombre = true;
   descripcion = true;
@@ -55,6 +56,13 @@ export class EditPlatoComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    let session=sessionStorage.getItem('userId')
+    if(session != null){
+      this.userId = Number (session);
+    }else{
+      this.router.navigateByUrl("/inicio")
+    }
+    
     this.id = this.route.snapshot.paramMap.get('id');
     if (this.id) {
       this.platoService.getUnPlatoAddDTO(this.id).subscribe({
