@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ResenaDTO } from '../../../modelos/ResenaDTO';
-import { ResenaAddDTO } from '../../../modelos/ResenaAddDTO';
+
 
 
 @Component({
@@ -16,7 +16,7 @@ import { ResenaAddDTO } from '../../../modelos/ResenaAddDTO';
 })
 export class TodasResenasAdminComponent implements OnInit {
 
-  resenas: ResenaAddDTO[]=[];
+  resenas: ResenaDTO[]=[];
 
 
   constructor(
@@ -31,7 +31,7 @@ export class TodasResenasAdminComponent implements OnInit {
   cargarResenas(): void {
     this.resenas = [];// Limpia las reseñas antes de cargar nuevas
     this.resenaService.getResenas().subscribe({
-      next: (data: ResenaAddDTO[]) => {
+      next: (data: ResenaDTO[]) => {
         this.resenas = [];
         this.resenas = data
       },

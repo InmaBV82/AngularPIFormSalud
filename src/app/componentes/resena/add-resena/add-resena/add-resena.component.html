@@ -13,11 +13,17 @@
       <input type="number" class="form-control" id="puntuacion" formControlName="puntuacion" max="10">
     </div>
     <div class="mb-3">
+      <p class="form-label">Plato</p>
+      <ul>
+        <li *ngIf="plato">{{ plato.id }}</li>
+      </ul>
+    </div>
+<!--     <div class="mb-3">
         <label for="platoId" class="form-label">Plato</label>
         <select class="form-select" formControlName="platoId">
           <option *ngFor="let plato of platos" [value]="plato.id">{{ plato.nombre }}</option>
         </select>
-      </div>
+      </div> -->
     <button type="submit" class="btn btn-primary">Guardar</button>
     <button class="btn btn-secondary ms-2" (click)="volver()">Atrás</button>
 </form>

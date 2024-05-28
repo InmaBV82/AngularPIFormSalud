@@ -7,12 +7,12 @@ import { Categoria } from '../../modelos/Categoria';
 import { PlatoDTO } from '../../modelos/PlatoDTO';
 import { ResenaDTO } from '../../modelos/ResenaDTO';
 import { Usuario } from '../../modelos/Usuario';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-listado-categorias',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf, DatePipe],
+  imports: [CommonModule, NgFor, NgIf, DatePipe, RouterLink],
   templateUrl: './listado-categorias.component.html',
   styleUrl: './listado-categorias.component.css'
 })
@@ -76,8 +76,8 @@ comprobar(): boolean {
   return sessionStorage.getItem('userId') !== null;
 }
 
-addResena(){
-    this.router.navigateByUrl("/addResena")
+addResena(id:number){
+    this.router.navigateByUrl(`/addResena/${id}`)
 }
 
 

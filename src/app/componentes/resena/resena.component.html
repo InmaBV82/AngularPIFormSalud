@@ -4,6 +4,7 @@
         <div id="respuesta" class="accordion-collapse collapse show">
             <div *ngFor="let resena of resenas" class="card mb-3">
                 <div class="accordion-body">
+                    <p class="accordion-text">Plato: {{ resena.nombrePlato }}</p>
                     <p class="accordion-text"><small class="text-muted">Fecha: {{ resena.fecha | date:'dd/MM/yyyy' }}</small></p>
                     <p class="accordion-text">{{ resena.comentario }}</p>
                     <p class="accordion-text"><small class="text-muted">Puntuación: {{ resena.puntuacion }} estrellas</small></p>

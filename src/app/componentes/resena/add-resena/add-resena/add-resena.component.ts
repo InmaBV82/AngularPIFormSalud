@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ResenaService } from '../../../../servicios/resena.service';
 import { UsuariosService } from '../../../../servicios/usuarios.service';
 import { Categoria } from '../../../../modelos/Categoria';
@@ -24,11 +24,14 @@ export class AddResenaComponent implements OnInit{
   usuarioId!: number
   platos: PlatoDTO[]=[]
   resenaForm!: FormGroup;
+  resena!: ResenaAddDTO;
+  platoid!: number;
+  plato!: PlatoDTO;
 
   comentario = true;
   fecha = true;
   puntuacion = true;
-  platoId = true;
+  
 
 
   constructor(
@@ -36,6 +39,7 @@ export class AddResenaComponent implements OnInit{
     private resenaService: ResenaService,
     private platoService: PlatoService,
     private router: Router,
+    private route: ActivatedRoute,
     private usuarioService: UsuariosService
   ) {
     
@@ -43,7 +47,7 @@ export class AddResenaComponent implements OnInit{
       comentario: ['', Validators.required],
       fecha: ['', Validators.required],
       puntuacion: ['', Validators.required],
-      platoId:  ['', Validators.required]
+    //  platoId:  ['', Validators.required]
 
     });
     
@@ -51,47 +55,62 @@ export class AddResenaComponent implements OnInit{
 
   ngOnInit(): void {
     this.usuarioId = this.usuarioService.getUserId();
-    this.cargarPlatos();
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('platoid');
+      if (id) {
+        this.platoid = Number(id);
+        if (!isNaN(this.platoid)) {
+          this.cargarPlato(this.platoid);
+        } else {
+          console.error('El ID del plato no es un número válido');
+        }
+      }
+    });
+   // this.cargarPlatos();
     
+  }
+
+  cargarPlato(platoid: number): void {
+    this.platoService.getPlatoDTO(platoid).subscribe({
+      next: (data: PlatoDTO) => {
+        this.plato = data;
+      },
+      error: (err) => console.error('Error al cargar plato', err)
+    });
   }
 
 
   agregarResena() {
-    //console.log(this.resenaForm.value)
     this.comentario = true;
     this.fecha = true;
     this.puntuacion = true;
-    this.platoId = true;
 
-    if(this.resenaForm.valid){
-      this.resenaService.addResenaUsuario(this.resenaForm).subscribe({
-        error: (e)=>{
-          this.alertaPersonalizadaError("Error","Error al crear la resena","Error" )
+    if (this.resenaForm.valid) {
+      const resenaAddData: ResenaAddDTO = {
+        ...this.resenaForm.value,
+        platoId: this.platoid
+      };
+
+      this.resenaService.addResenaUsuario(resenaAddData).subscribe({
+        error: (e) => {
+          this.alertaPersonalizadaError("Error", "Error al crear la reseña", "Error");
         },
-        next: (e) =>{
+        next: () => {
           this.router.navigateByUrl('/perfil');
-          this.alertaPersonalizadaOK("OK","Reseña creado correctamente","Confirm" )
-          
+          this.alertaPersonalizadaOK("OK", "Reseña creada correctamente", "Confirm");
         }
       });
-        
-      }else{
-
-        if (!this.resenaForm.controls["comentario"].valid) {
-          this.comentario = false;
-        } 
-        if(!this.resenaForm.controls["fecha"].valid) {
-          this.fecha = false;
-        }  
-        if(!this.resenaForm.controls["puntuacion"].valid) {
-          this.puntuacion = false;
-        }
-        if(!this.resenaForm.controls["platoId"].valid) {
-          this.platoId = false;
-        }
-
+    } else {
+      if (!this.resenaForm.controls["comentario"].valid) {
+        this.comentario = false;
       }
-
+      if (!this.resenaForm.controls["fecha"].valid) {
+        this.fecha = false;
+      }
+      if (!this.resenaForm.controls["puntuacion"].valid) {
+        this.puntuacion = false;
+      }
+    }
   }
 
   cargarPlatos(): void {

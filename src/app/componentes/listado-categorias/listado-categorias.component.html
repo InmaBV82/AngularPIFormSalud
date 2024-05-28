@@ -1,4 +1,12 @@
-<div class="container mt-5">
+  <div class="row"><div class="col-8"></div>
+  <div class="col-4">
+    <form class="d-flex">
+        <input class="form-control me-sm-2" type="buscar" placeholder="Buscar nombre del plato">
+        <button class="btn btn-success btn-sm my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
+    </div>
+</div>
+<div class="container mt-4">
   <div class="row text-center">
     <div class="col" *ngFor="let categoria of categorias">
       <div class="box" (click)="cargarPlatos(categoria.id)">
@@ -30,7 +38,7 @@
 
       <!-- Tabla para mostrar las reseñas -->
       <button *ngIf="comprobar()" type="button" class="btn btn-primary btn-md shadow-sm px-2"
-        (click)="addResena()">Añadir Reseña</button>
+        (click)="addResena(plato.id)">Añadir Reseña</button>
       <table class="table table-hover table-bordered mt-2">
         <thead class="table-secondary">
           <tr>

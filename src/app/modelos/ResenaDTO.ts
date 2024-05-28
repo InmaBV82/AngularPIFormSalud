@@ -10,4 +10,6 @@ export interface ResenaDTO{
 
     puntuacion: number
 
+    nombrePlato: string
+
 }

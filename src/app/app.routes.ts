@@ -31,7 +31,7 @@ export const routes: Routes = [
     { path: 'misPlatos', component: ListPlatosUsu},
     { path: 'addPlato', component: AddPlatoComponent},
     { path: 'editPlato/:id', component: EditPlatoComponent},
-    { path: 'addResena', component: AddResenaComponent},
+    { path: 'addResena/:platoid', component: AddResenaComponent},
     { path: 'editResena/:id', component: EditResenaComponent},
     { path: 'todasResenas', component: TodasResenasAdminComponent},
     { path : '**', component: InicioComponent},

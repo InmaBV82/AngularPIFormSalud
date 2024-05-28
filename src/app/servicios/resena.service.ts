@@ -20,8 +20,8 @@ export class ResenaService {
   }
 
   //GET
-  getResenas(): Observable<ResenaAddDTO[]> {
-    return this.http.get<ResenaAddDTO[]>(this.apiUrl+ 'resenaAddDTO');
+  getResenas(): Observable<ResenaDTO[]> {
+    return this.http.get<ResenaDTO[]>(this.apiUrl+ 'resenasDto');
   }
 
   getResenasPlato(platoid:number): Observable<ResenaDTO[]> {
@@ -41,11 +41,9 @@ export class ResenaService {
 
 
  //POST
- addResenaUsuario(form: FormGroup) {
+addResenaUsuario(resenaAddData: ResenaAddDTO): Observable<ResenaAddDTO> {
   let userId = this.usuarioService.getUserId();
-  const resenaAddData = form.value; // Guardo los valores del formulario para pasarselo a la llamada
-  return this.http.post(this.apiUrl + 'resenaAddDto/' + userId, resenaAddData);
-
+  return this.http.post<ResenaAddDTO>(this.apiUrl+ 'resenaAddDto/' +userId, resenaAddData);
 }
 
  //DELETE

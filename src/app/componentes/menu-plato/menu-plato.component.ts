@@ -16,6 +16,8 @@ import { EncabezadoComponent } from '../encabezado/encabezado.component';
 export class MenuPlatoComponent  implements OnInit {
   menus: any[] = [];
   userId!:number
+
+
   constructor(
     private menuPlatoService: MenuPlatoService,
     private route: Router
@@ -34,10 +36,13 @@ export class MenuPlatoComponent  implements OnInit {
     }
 
     this.menuPlatoService.obtenerMenuPlatos().subscribe((data: any) => {
-      this.menus = data; // Suponiendo que tu servicio devuelve el objeto JSON directamente
+      this.menus = data; 
     });
   }
   
+
+
+  }
   
 
 
@@ -53,4 +58,4 @@ export class MenuPlatoComponent  implements OnInit {
 
 
 
-}
+
