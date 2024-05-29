@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card my-5">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Modificar Datos</h2>
+                    <form [formGroup]="editarForm" (ngSubmit)="guardarCambios()">
+
+                        <div class="mb-3">
+                            <label for="nameInput" class="form-label">Nombre de usuario</label>
+                            <input type="text" formControlName="nombre" class="form-control" id="nameInput"
+                                placeholder="Ingresa tu nombre">
+                            <div class="alert alert-danger" role="alert" *ngIf="!nombreValido">El nombre es necesario
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="emailInput" class="form-label">Email</label>
+                            <input type="email" formControlName="email" class="form-control" id="emailInput"
+                                placeholder="Ingresa tu email">
+                            <div class="alert alert-danger" role="alert" *ngIf="!emailValido">El email es necesario
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="passwordInput" class="form-label">Contraseña</label>
+                            <input type="password" formControlName="password" class="form-control" id="password"
+                                [class.is-invalid]="editarForm.get('password')?.touched && editarForm.get('password')?.invalid">
+                            <div *ngIf="editarForm.get('password')?.errors?.['required']" class="text-danger">
+                                Introduce una contraseña.
+                            </div>
+                            <div *ngIf="editarForm.get('password')?.errors?.['pattern']" class="text-danger">
+                                La contraseña debe incluir al menos un número, una letra mayúscula, una letra minúscula
+                                y un total de 8 a 15 caracteres
+                            </div>
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                            </div>
+                            <br>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

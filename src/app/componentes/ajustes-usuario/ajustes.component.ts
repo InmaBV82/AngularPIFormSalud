@@ -35,7 +35,8 @@ o reaccionar a cambios en dicho estado.*/
     
   }
 
-  editarUsuario(){
+  editarUsuario(id:number | undefined){
+    this.router.navigate(['/editarUsuario', id])
 
   }
 

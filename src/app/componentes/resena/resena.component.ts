@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class ResenaComponent {
   @Input() resenas: ResenaDTO[]=[];
+  @Input() mostrarResenas: boolean = false;  // Nueva entrada para controlar la visualización
 
   constructor(private router: Router) {}
 

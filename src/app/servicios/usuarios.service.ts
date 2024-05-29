@@ -27,7 +27,7 @@ export class UsuariosService {
   ){
   this.apiUrl = 'http://localhost:8080/';
   if(this.getUserId()){
-    this.getAjustesUsuario(this.getUserId()).subscribe(
+    this.getUnUsuario(this.getUserId()).subscribe(
       (user:Usuario)=>{this.setUser(user)}
     )
 
@@ -54,7 +54,7 @@ export class UsuariosService {
   }
 
   //cargar un usuario por Id
-  getAjustesUsuario(userId: number): Observable<Usuario> {
+  getUnUsuario(userId: number): Observable<Usuario> {
     return this.http.get<Usuario>(this.apiUrl+ 'usuario/' + userId);
   }
 
@@ -111,6 +111,13 @@ export class UsuariosService {
       confirmButtonText:confirmButtonText
     });
   }
+
+  //PUT
+  editarUsuario(id:number,form: FormGroup, ) {
+    const usuarioUpdate = form.value; // Guardo los valores del formulario para pasarselo a la llamada
+    return this.http.put(this.apiUrl + 'editarUsuario/' + id, usuarioUpdate);
+  }
+
 
 
 

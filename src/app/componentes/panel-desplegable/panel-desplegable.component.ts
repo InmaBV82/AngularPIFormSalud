@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 export class PanelDesplegableComponent implements OnInit {
   usuarioId!:number
   resenas: ResenaDTO[]=[];
+  mostrarResenas: boolean = false;  // Estado para controlar la visualización
   
 
   constructor(
@@ -41,6 +42,8 @@ export class PanelDesplegableComponent implements OnInit {
     else {
       console.error('No se pudo obtener el ID del usuario');
     }
+
+    this.mostrarResenas = true;
   }
 
 }

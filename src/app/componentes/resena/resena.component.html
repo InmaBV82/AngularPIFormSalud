@@ -1,7 +1,12 @@
 <!-- Sección de reseñas -->
-<div class="container mt-4">
+<div class="container mt-4" *ngIf="mostrarResenas">
     <div class="accordion-item">
         <div id="respuesta" class="accordion-collapse collapse show">
+            <!-- Mostrar mensaje si la lista está vacía -->
+            <div *ngIf="resenas.length === 0" class="alert alert-warning" role="alert">
+                Aún no has dejado ninguna reseña.
+            </div>
+            <!-- Mostrar reseñas si la lista no está vacía -->
             <div *ngFor="let resena of resenas" class="card mb-3">
                 <div class="accordion-body">
                     <p class="accordion-text">Plato: {{ resena.nombrePlato }}</p>

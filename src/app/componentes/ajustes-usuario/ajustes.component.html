@@ -17,15 +17,8 @@
                     <p class="card-text">{{ usuario?.id }}</p>
 
                 </div>
-                <!--          <h6 class="card-title"><strong>Nombre: </strong>{{ usuario?.nombre }}</h6>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Email: </strong> {{ usuario?.email }}</li>
-                        <li class="list-group-item" type="password"><strong>Password: </strong> {{ usuario?.password }}</li>
-                        <li class="list-group-item"><strong>Número de usuario: </strong> {{ usuario?.id }}</li>
-                    </ul>
-                </div>  -->
                 <div class="card-footer text-muted">
-                    <button class="btn btn-primary me-2" (click)="editarUsuario()">Editar Cuenta</button>
+                    <button class="btn btn-primary me-2" (click)="editarUsuario(usuario?.id)">Editar Cuenta</button>
                     <button class="btn btn-danger" (click)="eliminarUsuario()">Eliminar Cuenta</button>
                 </div>
             </div>

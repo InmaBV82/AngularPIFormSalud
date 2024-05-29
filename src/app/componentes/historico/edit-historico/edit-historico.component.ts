@@ -5,7 +5,6 @@ import { HistoricoService } from '../../../servicios/historico.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PlatoService } from '../../../servicios/plato.service';
-import { UsuariosService } from '../../../servicios/usuarios.service';
 import { PlatoDTO } from '../../../modelos/PlatoDTO';
 import { HistoricoDTO } from '../../../modelos/HistoricoDTO';
 
