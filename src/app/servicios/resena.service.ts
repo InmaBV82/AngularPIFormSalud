@@ -39,6 +39,11 @@ export class ResenaService {
     return this.http.get<ResenaAddDTO>(this.apiUrl+ 'resenaAddDTO/'+id);
   }
 
+  //filtro reseñas por puntuacion
+  getFiltroResenasPuntuacion(puntuacionNumero:number): Observable<ResenaDTO[]> {
+    return this.http.get<ResenaDTO[]>(this.apiUrl+ 'filtroResenaPuntuacion/'+puntuacionNumero);
+  }
+
 
  //POST
 addResenaUsuario(resenaAddData: ResenaAddDTO): Observable<ResenaAddDTO> {
