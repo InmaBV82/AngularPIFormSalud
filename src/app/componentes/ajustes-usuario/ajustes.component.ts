@@ -62,7 +62,7 @@ o reaccionar a cambios en dicho estado.*/
       title: "ok",
       text: "Cuenta eliminada correctamente",
       icon: 'success',
-      confirmButtonText:'Cool'
+      confirmButtonText:'ok'
     });
   }
 

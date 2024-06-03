@@ -4,18 +4,21 @@ import { MenuPlatoService } from '../../servicios/menu-plato.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { EncabezadoComponent } from '../encabezado/encabezado.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @Component({
   selector: 'app-menu-plato',
   standalone: true,
-  imports: [CommonModule, RouterModule, EncabezadoComponent],
+  imports: [CommonModule, RouterModule, EncabezadoComponent, NgxPaginationModule ],
   templateUrl: './menu-plato.component.html',
   styleUrl: './menu-plato.component.css'
 })
 export class MenuPlatoComponent  implements OnInit {
   menus: any[] = [];
-  userId!:number
+  userId!:number;
+  p: number = 1; // Variable para controlar la página actual
+
 
 
   constructor(
@@ -36,25 +39,13 @@ export class MenuPlatoComponent  implements OnInit {
     }
 
     this.menuPlatoService.obtenerMenuPlatos().subscribe((data: any) => {
-      this.menus = data; 
+      // Convertir el diccionario en un array para la paginación
+      this.menus = Object.keys(data).map(key => ({ key, value: data[key] })); 
     });
   }
   
-
-
   }
   
-
-
- /*  cargarMenuPlatos(): void {
-    this.menuPlatoService.obtenerMenuPlatos().subscribe({
-      next: (menus) => {
-        // Convertir el objeto en un array
-        this.menus = Object.values(menus);
-      },
-      error: (error) => console.error('Error al cargar los menús con los platos', error)
-    });
-  } */
 
 
 

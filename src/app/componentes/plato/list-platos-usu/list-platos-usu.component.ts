@@ -7,11 +7,12 @@ import { UsuariosService } from '../../../servicios/usuarios.service';
 import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Usuario } from '../../../modelos/Usuario';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-list-platos-usu',
   standalone: true,
-  imports: [CommonModule, NgIf, NgFor, RouterLink, DatePipe],
+  imports: [CommonModule, NgIf, NgFor, RouterLink, DatePipe, NgxPaginationModule],
   templateUrl: './list-platos-usu.component.html',
   styleUrl: './list-platos-usu.component.css'
 })
@@ -21,6 +22,7 @@ export class ListPlatosUsu implements OnInit{
   resenas: ResenaDTO[]=[];
   usuario!: Usuario | undefined
   usuarioId!:number
+  p: number = 1; // Variable para controlar la página actual
 
   constructor(
     private usuarioService: UsuariosService,
@@ -74,7 +76,7 @@ export class ListPlatosUsu implements OnInit{
       title: "ok",
       text: "Plato eliminado correctamente",
       icon: 'success',
-      confirmButtonText:'Cool'
+      confirmButtonText:'ok'
     });
   }
 }

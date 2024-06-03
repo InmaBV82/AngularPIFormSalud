@@ -1,7 +1,7 @@
 <div><button class="btn btn-success mb-3" routerLink="/addPlato">Crear Nuevo Plato</button></div>
 <div class="container mt-5">
     <!-- Sección para mostrar platos y sus reseñas -->
-    <div class="row text-center mt-3" *ngFor="let plato of platos">
+    <div class="row text-center mt-3" *ngFor="let plato of platos  | paginate: { itemsPerPage: 2, currentPage: p }">
         <div class="col-md-12">
             <div>
                 <p class="h3 text-primary">Categoría: {{ plato.categoriaNombre }}</p>
@@ -46,4 +46,6 @@
             </table>
         </div>
     </div>
-  
+    <div class="d-flex justify-content-end mt-3">
+        <pagination-controls (pageChange)="p = $event" class="pagination-sm"></pagination-controls>
+    </div>

@@ -8,11 +8,12 @@ import { PlatoDTO } from '../../modelos/PlatoDTO';
 import { ResenaDTO } from '../../modelos/ResenaDTO';
 import { Usuario } from '../../modelos/Usuario';
 import { Router, RouterLink } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-listado-categorias',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf, DatePipe, RouterLink],
+  imports: [CommonModule, NgFor, NgIf, DatePipe, RouterLink, NgxPaginationModule],
   templateUrl: './listado-categorias.component.html',
   styleUrl: './listado-categorias.component.css'
 })
@@ -21,6 +22,7 @@ export class ListadoCategoriasComponent implements OnInit {
   platos : PlatoDTO[]=[];
   resenas: ResenaDTO[]=[];
   usuario!:Usuario | null | undefined
+  p: number = 1; // Variable para controlar la página actual
 
   constructor(
     private listadoService: ListadoCategoriaService,
