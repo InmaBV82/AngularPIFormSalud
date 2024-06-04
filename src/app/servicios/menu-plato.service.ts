@@ -20,4 +20,9 @@ export class MenuPlatoService {
   obtenerMenuPlatos(): Observable<any> {
     return this.http.get<any>(this.apiUrl+ "menuPlatosDTO");
   }
+
+  //filtro reseñas por puntuacion
+  getFiltroMenuPlatoPorTipo(tipo:string): Observable<any> {
+    return this.http.get<any>(this.apiUrl+ 'filtroMenuPlato/'+tipo);
+  }
 }

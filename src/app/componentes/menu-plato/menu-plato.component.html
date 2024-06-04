@@ -1,47 +1,17 @@
-<!-- <app-encabezado></app-encabezado>
-<div class="container">
-    <div class="row">
-        <div class="col-8">
-            <h1 class="text-secondary text-center">Menús Diseñados</h1>
-        </div>
-        <div class="col-4">
-            <form class="d-flex">
-                <input class="form-control me-sm-2" type="buscar" placeholder="Buscar por tipo de menú">
-                <button class="btn btn-success btn-sm my-2 my-sm-0" type="submit">Buscar</button>
-            </form>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <div *ngFor="let menu of menus | keyvalue" class="mb-4">
-                <h2 class="text-info">{{ menu.value[0].nombreMenu }}</h2>
-                <div class="list-group">
-                    <div *ngFor="let plato of menu.value" class="list-group-item">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">{{ plato.nombrePlato }} <a class="m-2"
-                                    [routerLink]="['/detalle-plato', plato.platoid]"> ver </a></h5>
-
-                            <small>{{ plato.momentodia }}</small>
-                        </div>
-                        <p class="mb-1">{{ plato.tipoMenu }}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> -->
-
 <app-encabezado></app-encabezado>
 <div class="container">
   <div class="row">
-    <div class="col-8">
+    <div class="col-6">
       <h1 class="text-secondary text-center">Menús Diseñados</h1>
     </div>
-    <div class="col-4">
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="buscar" placeholder="Buscar por tipo de menú">
+    <div class="col-6">
+      <form class="d-flex" (ngSubmit)="buscar(tipo.value)">
+        <select class="form-select me-sm-2" #tipo>
+            <option value="">Filtrar por tipo de menú</option>
+            <option *ngFor="let tipo of tipos" [value]="tipo.nombre">{{ tipo.nombre }}</option>
+        </select>
         <button class="btn btn-success btn-sm my-2 my-sm-0" type="submit">Buscar</button>
-      </form>
+    </form>
     </div>
   </div>
   <div class="row">
@@ -51,12 +21,12 @@
         <div class="list-group">
           <div *ngFor="let plato of menu.value" class="list-group-item">
             <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">{{ plato.nombrePlato }}
+              <h5 class="mb-1">{{ plato?.nombrePlato }}
                 <a class="m-2" [routerLink]="['/detalle-plato', plato.platoid]">ver</a>
               </h5>
-              <small>{{ plato.momentodia }}</small>
+              <small>{{ plato?.momentodia }}</small>
             </div>
-            <p class="mb-1">{{ plato.tipoMenu }}</p>
+            <p class="mb-1">{{ plato?.tipoMenu }}</p>
           </div>
         </div>
       </div>

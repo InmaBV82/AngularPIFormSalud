@@ -14,9 +14,13 @@ export class TiposService {
   this.apiUrl = 'http://localhost:8080/';
    }
 
-
+//GET
   obtenerTipos(): Observable<Tipo[]> {
     return this.http.get<Tipo[]>(this.apiUrl+ 'tipos');
+  }
+
+  obtenerUno(id:number): Observable<Tipo[]> {
+    return this.http.get<Tipo[]>(this.apiUrl+ 'tipo/'+id);
   }
 
   
