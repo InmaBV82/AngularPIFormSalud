@@ -56,7 +56,7 @@ export class EditarUsuarioComponent implements OnInit{
     this.editarForm = this.formBuilder.group({
       nombre:["", [Validators.required]],
       email:["",[Validators.required, Validators.email]],
-      password:["",[Validators.required, Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}')]],
+      password:["",[Validators.required, Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,75}')]],
 
     }
     )
