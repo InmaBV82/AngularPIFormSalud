@@ -8,26 +8,67 @@
 
                         <div class="mb-3">
                             <label for="emailInput" class="form-label">Email</label>
-                            <input type="email" formControlName="email" class="form-control" id="emailInput" placeholder="Ingresa tu email">
-                            <div class="alert alert-danger" role="alert" *ngIf="!emailValido">El email es necesario</div>
+                            <input type="email" formControlName="email" class="form-control" id="emailInput"
+                                placeholder="Ingresa tu email">
+                            <div class="alert alert-danger" role="alert" *ngIf="!emailValido">El email es necesario
+                            </div>
                         </div>
-            
+
                         <div class="mb-3">
                             <label for="passwordInput" class="form-label">Contraseña</label>
-                            <input type="password" formControlName="password" class="form-control" id="passwordInput" placeholder="Crea una contraseña">
-                            <div class="alert alert-danger" role="alert" *ngIf="!passwordValido">Introduce una contraseña</div>
+                            <input type="password" formControlName="password" class="form-control" id="passwordInput"
+                                placeholder="Crea una contraseña">
+                            <div class="alert alert-danger" role="alert" *ngIf="!passwordValido">Introduce una
+                                contraseña</div>
                         </div>
                         <br>
-                       <div class="d-grid gap-2">
-                            <input type="submit"class="btn btn-primary" value="Iniciar Sesión">
+                        <p class="text-center ">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#recuperarPasswordModal"
+                                class="btn btn-link text-danger btn-sm">¿Has olvidado la contraseña? Recuperar
+                                contraseña</a>
+                        </p>
+                        <br>
+                        <div class="d-grid gap-2">
+                            <input type="submit" class="btn btn-primary" value="Iniciar Sesión">
                         </div>
                         <br>
                         <div class="d-grid gap-2">
-                            <a  class="btn btn-secondary" href="/registro" >Registrarse</a>
+                            <a class="btn btn-secondary" href="/registro">Registrarse</a>
                         </div>
 
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="recuperarPasswordModal" tabindex="-1" aria-labelledby="recuperarPasswordModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="recuperarPasswordModalLabel">Recuperar Contraseña</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form [formGroup]="recuperarPasswordForm" (ngSubmit)="recuperarPassword()">
+                    <div class="mb-3">
+                        <label for="nombreInput" class="form-label">Introduza Nombre</label>
+                        <input type="text" formControlName="nombre" class="form-control" id="nombreInput" required>
+                        <div class="alert alert-danger" role="alert" *ngIf="!nombreRecuperarValido">El nombre es
+                            necesario</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailRecuperarInput" class="form-label">Introduzca Email</label>
+                        <input type="email" formControlName="email" class="form-control" id="emailRecuperarInput"
+                            required>
+                        <div class="alert alert-danger" role="alert" *ngIf="!emailRecuperarValido">El email es necesario
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
             </div>
         </div>
     </div>

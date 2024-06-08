@@ -24,26 +24,39 @@
 
                         <div class="mb-3">
                             <label for="passwordInput" class="form-label">Contraseña</label>
-                            <input type="password" formControlName="password" class="form-control" id="password"
+                            <input type="password" formControlName="password" class="form-control" id="passwordInput"
+                                placeholder="Ingresa una contraseña"
                                 [class.is-invalid]="registroForm.get('password')?.touched && registroForm.get('password')?.invalid">
-                            <div *ngIf="registroForm.get('password')?.errors?.['required']" class="text-danger">
-                                Introduce una contraseña.
+                            <div class="alert alert-danger" role="alert" *ngIf="!passwordValido"> Introduce una
+                                contraseña
                             </div>
-                            <div *ngIf="registroForm.get('password')?.errors?.['pattern']" class="text-danger">
+
+                            <div *ngIf="registroForm.get('password')?.touched && registroForm.get('password')?.errors?.['pattern']"
+                                class="text-danger">
                                 La contraseña debe incluir al menos un número, una letra mayúscula, una letra minúscula
-                                y un total de 8 a 15 caracteres
+                                y un total de 8 a 15 caracteres.
                             </div>
-
-                            <!--   <div class="mb-3">
-                            <label for="confirmPasswordInput" class="form-label">Confirmar Contraseña</label>
-                            <input type="password" class="form-control" id="confirmPasswordInput" placeholder="Confirma tu contraseña">
-                        </div>-->
-
-                            <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">Registrarse</button>
-                            </div>
-                            <br>
                         </div>
+                        <div class="mb-3">
+                            <label for="confirmPasswordInput" class="form-label">Confirmar Contraseña</label>
+                            <input type="password" formControlName="confirmPassword" class="form-control" placeholder="Confirma la contraseña"
+                                id="confirmPasswordInput"
+                                [class.is-invalid]="registroForm.get('confirmPassword')?.touched && registroForm.get('confirmPassword')?.invalid || passwordsMismatch">
+                            <div *ngIf="registroForm.get('confirmPassword')?.touched && registroForm.get('confirmPassword')?.errors?.['required']"
+                                class="alert alert-danger">
+                                Confirma tu contraseña.
+                            </div>
+                        </div>
+
+                        <div *ngIf="passwordsMismatch && (registroForm.get('confirmPassword')?.touched || registroForm.get('password')?.touched)"
+                            class="text-danger">
+                            Las contraseñas no coinciden.
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary">Registrarse</button>
+                        </div>
+                        <br>
                     </form>
                 </div>
             </div>

@@ -20,14 +20,15 @@ export class LoginComponent implements OnInit{
     private usuarioService: UsuariosService, 
     private fb: FormBuilder,
     private router: Router
-  
   ) { }
 
-
-  usuario !: Usuario
+  usuario!: Usuario;
 
   emailValido = true;
   passwordValido = true;
+
+  nombreRecuperarValido = true;
+  emailRecuperarValido = true;
 
   formLogin: FormGroup=this.fb.group({
     email: '',
@@ -35,14 +36,22 @@ export class LoginComponent implements OnInit{
 
   });
 
-  ngOnInit(){
-    this.formLogin = this.fb.group({
-      email:["",[Validators.required, Validators.email]],
-      password:["",[Validators.required]],
-    }
-    )
-  }
+  recuperarPasswordForm: FormGroup=this.fb.group({
+    nombre: '',
+    email:''
+  })
 
+
+  ngOnInit() {
+    this.formLogin = this.fb.group({
+      email: ["", [Validators.required, Validators.email]],
+      password: ["", [Validators.required]],
+    });
+    this.recuperarPasswordForm = this.fb.group({
+      nombre: ["", Validators.required],
+      email: ["", [Validators.required, Validators.email]]
+    });
+  }
 
   hacerLogin() {
     if(this.formLogin.valid){
@@ -72,15 +81,48 @@ export class LoginComponent implements OnInit{
     }
   }
 
-      alertaPersonalizadaError(title:string, text:string, confirmButtonText:string){
-        Swal.fire({
-          title:title,
-          text: text,
-          icon: 'error',
-          confirmButtonText:confirmButtonText
-        });
-      }
+  recuperarPassword() {
+    if (this.recuperarPasswordForm.valid) {
+      const nombre = this.recuperarPasswordForm.get('nombre')?.value;
+      const email = this.recuperarPasswordForm.get('email')?.value;
 
+      this.usuarioService.recuperarPassword(nombre, email)
+        .subscribe(
+          response => {
+            this.alertaPersonalizadaOK('OK', 'Se le ha enviado un email con la nueva contraseña', 'Confirm!');
+          },
+          error => {
+            this.alertaPersonalizadaError('Error', 'Error al recuperar la contraseña', 'Error');
+          }
+        );
+    } else {
+      if (!this.recuperarPasswordForm.controls["nombre"].valid) {
+        this.nombreRecuperarValido = false;
+      }
+      if (!this.recuperarPasswordForm.controls["email"].valid) {
+        this.emailRecuperarValido = false;
+      }
+    }
+  }
+
+
+  alertaPersonalizadaError(title:string, text:string, confirmButtonText:string){
+    Swal.fire({
+      title:title,
+      text: text,
+      icon: 'error',
+      confirmButtonText:confirmButtonText
+    });
+  }
+
+  alertaPersonalizadaOK(title:string, text:string, confirmButtonText:string){
+    Swal.fire({
+      title:title,
+      text: text,
+      icon: 'success',
+      confirmButtonText:confirmButtonText
+    });
+  }
 
   
 

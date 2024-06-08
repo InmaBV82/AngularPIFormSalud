@@ -56,7 +56,7 @@ export class TodasResenasAdminComponent implements OnInit {
     this.resenaService.deleteResena(id).subscribe({
       next: (response) => {
         this.alertaPersonalizadaOK("OK","Reseña eliminada correctamente","Confirm" )
-        this.router.navigateByUrl('/todasResenas');
+        this.router.navigate(['/perfil']);
       },
       error: (error) => {
         console.error('Ocurrió un error al eliminar la resena:', error);

@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
 export class RegistroComponent {
 
   registroForm !: FormGroup;
+  passwordsMismatch : boolean = false;
 
 
   nombreValido = true;
@@ -38,10 +39,16 @@ export class RegistroComponent {
     this.registroForm = this.fb.group({
       nombre:["", [Validators.required]],
       email:["",[Validators.required, Validators.email]],
-      password:["",[Validators.required, Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}')]],
+      password: ['', [
+        Validators.required,
+        Validators.pattern('(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}')
+      ]],
+      confirmPassword: ['', Validators.required]
 
-    }
-    )
+    });
+    this.registroForm.valueChanges.subscribe(() => {
+      this.confirmarPassword();
+    })
   }
 
   agregarUsuario() {
@@ -77,6 +84,12 @@ export class RegistroComponent {
 
       }
 
+  }
+
+  confirmarPassword(){
+    const password = this.registroForm.get('password')?.value;
+    const confirmPassword = this.registroForm.get('confirmPassword')?.value;
+    this.passwordsMismatch  = password !== confirmPassword ;
   }
   alertaPersonalizadaOK(title:string, text:string, confirmButtonText:string){
       Swal.fire({

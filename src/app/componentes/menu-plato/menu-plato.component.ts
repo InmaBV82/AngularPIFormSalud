@@ -86,6 +86,8 @@ export class MenuPlatoComponent  implements OnInit {
   }
 
   
+
+  
   alertaPersonalizadaError(title:string, text:string, confirmButtonText:string){
     Swal.fire({
       title:title,

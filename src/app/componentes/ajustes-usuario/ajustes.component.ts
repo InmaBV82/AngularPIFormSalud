@@ -41,7 +41,7 @@ o reaccionar a cambios en dicho estado.*/
   }
 
   eliminarUsuario() {
-    const confirmacion = confirm('Se eliminarán los platos e historicos asociados a su cuenta, ¿está seguro?');
+    const confirmacion = confirm('Se eliminarán todos los datos asociados a su cuenta, ¿está seguro?');
     if(confirmacion){
       this.usuarioService.deleteUsuarioById(this.usuarioId).subscribe({
         next: (response) => {

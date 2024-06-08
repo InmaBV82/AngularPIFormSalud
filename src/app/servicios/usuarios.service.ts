@@ -69,6 +69,12 @@ export class UsuariosService {
     return this.http.post(this.apiUrl+ 'usuarioNuevo', usuarioData);
   }
 
+//POST-RECUPERAR CONTRASEÑA
+recuperarPassword(nombre: string, email: string): Observable<any> {
+  return this.http.post(this.apiUrl+ 'recuperarPassword/'+ nombre + '/'+ email, {});
+}
+
+
   //LOGIN APIREST
   loginUsuario(data : any): Observable<Usuario> {
     return this.http.post<Usuario>(this.apiUrl+ 'login', data);
