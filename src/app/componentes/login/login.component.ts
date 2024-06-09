@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2  } from '@angular/core';
 import { NgIf, NgStyle } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuariosService } from '../../servicios/usuarios.service';
@@ -17,19 +17,18 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit{
 
+  usuario!: Usuario;
+  emailValido = true;
+  passwordValido = true;
+  nombreRecuperarValido = true;
+  emailRecuperarValido = true;
+
   constructor(
     private usuarioService: UsuariosService, 
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2
   ) { }
-
-  usuario!: Usuario;
-
-  emailValido = true;
-  passwordValido = true;
-
-  nombreRecuperarValido = true;
-  emailRecuperarValido = true;
 
   formLogin: FormGroup=this.fb.group({
     email: '',
@@ -89,14 +88,15 @@ export class LoginComponent implements OnInit{
       const email = this.recuperarPasswordForm.get('email')?.value;
 
       this.usuarioService.recuperarPassword(nombre, email)
-        .subscribe(
-          response => {
-            this.alertaPersonalizadaOK('OK', 'Se le ha enviado un email con la nueva contraseña', 'Confirm!');
-          },
-          error => {
-            this.alertaPersonalizadaError('Error', 'Error al recuperar la contraseña', 'Error');
-          }
-        );
+      .subscribe({
+        next: response => {
+          this.alertaPersonalizadaOK('OK', 'Se le ha enviado un email con la nueva contraseña', 'Confirm!');
+          this.cerrarModal();
+        },
+        error: error => {
+          this.alertaPersonalizadaError('Error', 'Error al recuperar la contraseña', 'Error');
+        }
+      });
     } else {
       if (!this.recuperarPasswordForm.controls["nombre"].valid) {
         this.nombreRecuperarValido = false;
@@ -105,6 +105,13 @@ export class LoginComponent implements OnInit{
         this.emailRecuperarValido = false;
       }
     }
+  }
+
+  cerrarModal() {
+    const modal = this.renderer.selectRootElement('#recuperarPasswordModal', true);
+    this.renderer.setProperty(modal, 'style', 'display: none');
+    const backdrop = this.renderer.selectRootElement('.modal-backdrop', true);
+    this.renderer.removeChild(document.body, backdrop);
   }
 
 

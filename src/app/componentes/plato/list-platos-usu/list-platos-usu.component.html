@@ -26,7 +26,7 @@
 
 
             <!-- Tabla para mostrar las reseñas -->
-            <table class="table table-hover table-bordered mt-2">
+            <table *ngIf="plato.resenas && plato.resenas.length > 0" class="table table-hover table-bordered mt-2">
                 <thead class="table-secondary">
                     <tr>
                         <th>Fecha</th>

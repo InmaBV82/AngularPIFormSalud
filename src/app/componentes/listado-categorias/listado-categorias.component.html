@@ -1,4 +1,4 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-8"></div>
   <div class="col-4">
     <form class="d-flex">
@@ -6,7 +6,7 @@
       <button class="btn btn-success btn-sm my-2 my-sm-0" type="submit">Buscar</button>
     </form>
   </div>
-</div>
+</div> -->
 
 <div class="container mt-4">
   <div class="row text-center">
@@ -43,7 +43,7 @@
 
       <!-- Tabla para mostrar las reseñas -->
       <button *ngIf="comprobar()" type="button" class="btn btn-primary btn-md shadow-sm px-2" (click)="addResena(plato.id)">Añadir Reseña</button>
-      <table class="table table-hover table-bordered mt-2">
+      <table *ngIf="plato.resenas && plato.resenas.length > 0" class="table table-hover table-bordered mt-2">
         <thead class="table-secondary">
           <tr>
             <th>Fecha</th>
