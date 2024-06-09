@@ -5,6 +5,7 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 import { Usuario } from '../../modelos/Usuario';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -56,28 +57,29 @@ export class LoginComponent implements OnInit{
   hacerLogin() {
     if(this.formLogin.valid){
       this.usuarioService.loginUsuario(this.formLogin.value).subscribe(
-        user =>{
-          if(user != null){
-            this.usuarioService.setUser(user)
-            this.usuario = user
-            this.usuarioService.saveUserId(this.usuario.id)
-            this.router.navigateByUrl('/perfil');
-          }
-          else{
-            this.alertaPersonalizadaError('Error','Datos Incorrectos', 'error')
+        user => {
+          this.usuarioService.setUser(user);
+          this.usuario = user;
+          this.usuarioService.saveUserId(this.usuario.id);
+          this.router.navigateByUrl('/perfil');
+        },//manejo diferentes errores
+        (error: HttpErrorResponse) => {
+          if (error.status === 404) {
+            this.alertaPersonalizadaError('Error', 'Usuario no registrado', 'error');
+          } else if (error.status === 401) {
+            this.alertaPersonalizadaError('Error', 'Contraseña incorrecta', 'error');
+          } else {
+            this.alertaPersonalizadaError('Error', 'Error desconocido', 'error');
           }
         }
-
-      )
-    } 
-    else{
+      );
+    } else {
       if(!this.formLogin.controls["email"].valid) {
         this.emailValido = false;
       }  
       if(!this.formLogin.controls["password"].valid) {
         this.passwordValido = false;
       }
-
     }
   }
 

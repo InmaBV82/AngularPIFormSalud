@@ -1,6 +1,6 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-8">
             <div class="card">
                 <h5 class="card-header bg-primary text-white">Perfil del Usuario</h5>
                 <div class="card-body">
@@ -10,16 +10,13 @@
                     <h5 class="card-title">Email:</h5>
                     <p class="card-text">{{ usuario?.email }}</p>  
                     <hr>
-                    <h5 class="card-title">Contraseña:</h5>
-                    <input id="password" type="password" [value]="usuario?.password" disabled>
-                    <hr>
                     <h5 class="card-title">Número de usuario:</h5>
                     <p class="card-text">{{ usuario?.id }}</p>
 
                 </div>
                 <div class="card-footer text-muted">
-                    <button class="btn btn-primary me-2" (click)="editarUsuario(usuario?.id)">Editar Cuenta</button>
-                    <button class="btn btn-danger" (click)="eliminarUsuario()">Eliminar Cuenta</button>
+                    <button class="btn btn-primary m-2" (click)="editarUsuario(usuario?.id)">Editar Cuenta</button>
+                    <button class="btn btn-danger m-2" (click)="eliminarUsuario()">Eliminar Cuenta</button>
                 </div>
             </div>
         </div>

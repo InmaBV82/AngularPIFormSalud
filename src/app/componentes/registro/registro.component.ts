@@ -91,6 +91,7 @@ export class RegistroComponent {
     const confirmPassword = this.registroForm.get('confirmPassword')?.value;
     this.passwordsMismatch  = password !== confirmPassword ;
   }
+  
   alertaPersonalizadaOK(title:string, text:string, confirmButtonText:string){
       Swal.fire({
         title:title,

@@ -78,6 +78,9 @@ export class EditarUsuarioComponent implements OnInit{
 
   }
 
+  volver() {
+    this.router.navigateByUrl('/ajustes');
+  }
 
   
   alertaPersonalizadaOK(title:string, text:string, confirmButtonText:string){
