@@ -43,7 +43,7 @@ export class AddPlatoComponent implements OnInit{
     this.platoForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      foto: ['', Validators.required],
+      foto: '',
       ingredientes: ['', Validators.required],
       tiempo: ['', Validators.required],
       categoriaid:  ['', Validators.required]

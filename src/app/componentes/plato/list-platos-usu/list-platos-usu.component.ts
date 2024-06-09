@@ -38,7 +38,7 @@ export class ListPlatosUsu implements OnInit{
       this.router.navigateByUrl("/inicio")
     }
     this.usuarioId = this.usuarioService.getUserId(); // Obtener el ID del usuario logueado
- 
+
     this.cargarPlatos();
     
   }
