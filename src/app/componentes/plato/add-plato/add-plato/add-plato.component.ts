@@ -5,10 +5,8 @@ import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { PlatoService } from '../../../../servicios/plato.service';
 import { UsuariosService } from '../../../../servicios/usuarios.service';
-import { PlatoDTO } from '../../../../modelos/PlatoDTO';
 import { Categoria } from '../../../../modelos/Categoria';
 import { ListadoCategoriaService } from '../../../../servicios/listado-categoria.service';
-import { PlatoAddDTO } from '../../../../modelos/PlatoAddDTO';
 
 
 @Component({

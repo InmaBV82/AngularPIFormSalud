@@ -15,6 +15,6 @@
           <option *ngFor="let plato of platos" [value]="plato.id">{{ plato.nombre }}</option>
         </select>
       </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="submit" class="btn btn-primary" [disabled]="historicoForm.invalid">Guardar</button>
     <button class="btn btn-secondary ms-2" (click)="volver()">Atrás</button>
   </form>

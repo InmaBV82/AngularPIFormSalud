@@ -26,6 +26,6 @@
           <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.nombre }}</option>
         </select>
       </div>
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="submit" class="btn btn-primary" [disabled]="platoForm.invalid">Guardar</button>
     <button class="btn btn-secondary ms-2" (click)="volver()">Atrás</button>
 </form>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2  } from '@angular/core';
+import { APP_BOOTSTRAP_LISTENER, Component, OnInit, Renderer2  } from '@angular/core';
 import { NgIf, NgStyle } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuariosService } from '../../servicios/usuarios.service';
@@ -6,7 +6,6 @@ import { Usuario } from '../../modelos/Usuario';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-
 
 @Component({
   selector: 'app-login',
@@ -22,6 +21,7 @@ export class LoginComponent implements OnInit{
   passwordValido = true;
   nombreRecuperarValido = true;
   emailRecuperarValido = true;
+  isLoading = false;
 
   constructor(
     private usuarioService: UsuariosService, 
@@ -84,16 +84,18 @@ export class LoginComponent implements OnInit{
 
   recuperarPassword() {
     if (this.recuperarPasswordForm.valid) {
+      this.isLoading = true;
       const nombre = this.recuperarPasswordForm.get('nombre')?.value;
       const email = this.recuperarPasswordForm.get('email')?.value;
 
       this.usuarioService.recuperarPassword(nombre, email)
       .subscribe({
         next: response => {
+          this.isLoading = false;
           this.alertaPersonalizadaOK('OK', 'Se le ha enviado un email con la nueva contraseña', 'Confirm!');
-          this.cerrarModal();
         },
         error: error => {
+          this.isLoading = false;
           this.alertaPersonalizadaError('Error', 'Error al recuperar la contraseña', 'Error');
         }
       });
@@ -105,13 +107,6 @@ export class LoginComponent implements OnInit{
         this.emailRecuperarValido = false;
       }
     }
-  }
-
-  cerrarModal() {
-    const modal = this.renderer.selectRootElement('#recuperarPasswordModal', true);
-    this.renderer.setProperty(modal, 'style', 'display: none');
-    const backdrop = this.renderer.selectRootElement('.modal-backdrop', true);
-    this.renderer.removeChild(document.body, backdrop);
   }
 
 
