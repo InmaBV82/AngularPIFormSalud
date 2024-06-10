@@ -63,8 +63,7 @@ export class MenuPlatoComponent  implements OnInit {
   buscar(tipo: string): void {
   
     if (tipo.trim() === '') {
-      console.warn('Tipo de menú no válido o vacío.');
-      this.menus = [];
+      alert('Tipo de menú no válido o vacío.');
       return;
     }
 
@@ -72,14 +71,14 @@ export class MenuPlatoComponent  implements OnInit {
       next: (data: any) => {
         // Convertir el diccionario en un array para mostrarlo en la vista
         this.menus = Object.keys(data).map(key => ({ key, value: data[key] })); 
+        
         if (data.length === 0) {
           this.alertaPersonalizadaError("Información", "No se encontraron menús con el tipo seleccionado", "info");
         }
       },
       error: (error: any) => {
         this.alertaPersonalizadaError("Error", "No se encontraron menús", "error");
-        this.menus = []; // Vacía la lista de menús para que no permanezcan las últimas filtradas
-        console.error('Error al obtener los menús diseñados:', error);
+
       }
     });
   

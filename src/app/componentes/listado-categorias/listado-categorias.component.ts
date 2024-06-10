@@ -9,11 +9,13 @@ import { ResenaDTO } from '../../modelos/ResenaDTO';
 import { Usuario } from '../../modelos/Usuario';
 import { Router, RouterLink } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
+import Swal from 'sweetalert2';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listado-categorias',
   standalone: true,
-  imports: [CommonModule, NgFor, NgIf, DatePipe, RouterLink, NgxPaginationModule],
+  imports: [CommonModule, NgFor, NgIf, DatePipe, RouterLink, NgxPaginationModule, FormsModule],
   templateUrl: './listado-categorias.component.html',
   styleUrl: './listado-categorias.component.css'
 })
@@ -21,7 +23,8 @@ export class ListadoCategoriasComponent implements OnInit {
   categorias : Categoria[]=[];
   platos : PlatoDTO[]=[];
   resenas: ResenaDTO[]=[];
-  usuario!:Usuario | null | undefined
+  usuario!:Usuario | null | undefined;
+  nombre: string = '';    
   p: number = 1; // Variable para controlar la página actual
 
   constructor(
@@ -80,6 +83,35 @@ comprobar(): boolean {
 
 addResena(id:number){
     this.router.navigateByUrl(`/addResena/${id}`)
+}
+
+buscar(): void {
+  if (this.nombre.trim() === '') {
+    console.warn('Ninguna coincidencia.');
+    this.platos = [];
+    return;
+  }
+
+  this.platoService.getFiltroNombrePlato(this.nombre).subscribe({
+    next: (data: PlatoDTO[]) => {
+      this.platos = data;
+      this.nombre = ''; // Limpiar el campo de búsqueda después de obtener los resultados
+    },
+    error: (error: any) => {
+      this.alertaPersonalizadaError("Error", "No hay coincidencias", "error");
+      this.platos = []; // Vacía la lista para que no permanezcan las últimas filtradas
+      console.error('Error al obtener los platos:', error);
+    }
+  });
+}
+
+alertaPersonalizadaError(title:string, text:string, confirmButtonText:string){
+  Swal.fire({
+    title:title,
+    text: text,
+    icon: 'error',
+    confirmButtonText:confirmButtonText
+  });
 }
 
 

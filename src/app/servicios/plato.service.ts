@@ -43,6 +43,11 @@ export class PlatoService {
     return this.http.get<PlatoDTO[]>(this.apiUrl+ 'platosUsuario/'+userId);
   }
 
+   //filtro reseñas por puntuacion
+  getFiltroNombrePlato(nombre:string): Observable<PlatoDTO[]> {
+    return this.http.get<PlatoDTO[]>(this.apiUrl+ 'filtroNombrePlato/'+nombre);
+  }
+
   //POST
   addPlatoUsuario(form: FormGroup) {
     let userId = this.usuarioService.getUserId();
