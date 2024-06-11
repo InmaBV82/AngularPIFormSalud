@@ -45,7 +45,7 @@ export class EditPlatoComponent implements OnInit{
     this.platoForm = this.formBuilder.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
-      //foto: '',
+      foto: '',
       ingredientes: ['', Validators.required],
       tiempo: ['', Validators.required],
       categoriaid:  ['', Validators.required]
@@ -69,7 +69,6 @@ export class EditPlatoComponent implements OnInit{
         next: (data: PlatoAddDTO) => {
           // se utiliza para asignar valores a un formulario reactivo en Angular
           this.platoForm.patchValue(data);
-          console.log(data)
           // Ahora que el formulario está inicializado no da error de undefined=>usuarioId
         },
         error: (e) => {

@@ -12,7 +12,7 @@ import { Usuario } from '../../modelos/Usuario';
   styleUrl: './navegacion.component.css'
 })
 export class NavegacionComponent implements OnInit{
-
+  
   usuario!: Usuario | undefined
   usuarioId!: number
   
@@ -44,7 +44,7 @@ o reaccionar a cambios en dicho estado.*/
   }
 
   
-  comprobarAdmin(){
+  comprobarAdmin(): boolean{
     if(this.usuarioId == 1){
 
       return true;

@@ -1,0 +1,12 @@
+
+<div *ngFor="let usu of usuarios | paginate: { itemsPerPage: 3, currentPage: p }" class="card border-primary mb-3">
+    <div class="card-header">Usuario {{usu.id}}</div>
+    <div class="card-body">
+        <h6 class="card-title">Nombre: {{usu.nombre}} </h6>
+        <p class="card-text">Email: {{usu.email}}</p>
+    </div>
+</div>
+<div class="d-flex justify-content-end mt-3">
+    <pagination-controls (pageChange)="p = $event" class="pagination-sm"></pagination-controls>
+</div>
+

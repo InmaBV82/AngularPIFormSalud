@@ -2,7 +2,7 @@
     <div class="row text-center">
         <h1 class="text-secondary">Mi Histórico de Comidas</h1>
 
-        <table class="table table-hover">
+        <table *ngIf="historicos.length > 0" class="table table-hover">
             <thead class="text-center">
                 <tr class="table-success">
                     <th>ID</th>
