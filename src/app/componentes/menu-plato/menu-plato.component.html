@@ -31,7 +31,7 @@
             <p class="mb-1">{{ plato?.tipoMenu }}</p>
           </div>
         </div>
-        <button class="btn btn-danger btn-sm m-2" (click)="eliminarMenu(menu.value[0].menuid)">Eliminar</button>
+        <button *ngIf="comprobarAdmin()" class="btn btn-danger btn-sm m-2" (click)="eliminarMenu(menu.value[0].menuid)">Eliminar</button>
       </div>
       <div class="d-flex justify-content-end mt-3">
         <pagination-controls (pageChange)="p = $event" class="pagination-sm"></pagination-controls>
