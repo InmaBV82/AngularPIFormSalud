@@ -18,6 +18,7 @@ import { EditResenaComponent } from './componentes/resena/edit-resena/edit-resen
 import { TodasResenasAdminComponent } from './componentes/resena/todas-resenas-admin/todas-resenas-admin.component';
 import { EditarUsuarioComponent } from './componentes/ajustes-usuario/editar-usuario/editar-usuario.component';
 import { AllUsuariosComponent } from './all-usuarios/all-usuarios.component';
+import { AddMenuPlatoComponent } from './componentes/menu-plato/add-menu-plato/add-menu-plato.component';
 
 export const routes: Routes = [
     { path: 'login', component: LoginComponent},
@@ -38,5 +39,6 @@ export const routes: Routes = [
     { path: 'editResena/:id', component: EditResenaComponent},
     { path: 'todasResenas', component: TodasResenasAdminComponent},
     { path: 'allUsuarios', component: AllUsuariosComponent},
+    { path: 'addMenuPlato', component: AddMenuPlatoComponent},
     { path : '**', component: InicioComponent},
 ];

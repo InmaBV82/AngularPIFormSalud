@@ -1,0 +1,50 @@
+<div class="container mb-3">
+    <h4 class="text-secondary">Crear Menú</h4>
+    <form [formGroup]="menuForm" (ngSubmit)="agregarMenu()">
+
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre menú</label>
+            <input type="text" class="form-control" id="nombre" formControlName="nombre">
+        </div>
+
+        <div class="mb-3">
+            <label for="platoid" class="form-label">Tipo</label>
+            <select class="form-select" formControlName="tipoid">
+                <option *ngFor="let tipo of tipos" [value]="tipo.id">{{ tipo.nombre }}</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-info btn-sm">Guardar nuevo menú</button>
+
+    </form>
+</div>
+<div class="container mb-3">
+    <h4 class="text-secondary">Diseñar un Menú</h4>
+    <form [formGroup]="menuPlatoForm" (ngSubmit)="agregarMenuPlato()">
+
+        <div class="mb-3">
+            <label for="platoid" class="form-label">Elige Plato</label>
+            <select class="form-select" formControlName="platoid">
+                <option *ngFor="let plato of platos" [value]="plato.id">{{ plato.nombre }}</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="platoid" class="form-label">Elige Menú</label>
+            <select class="form-select" formControlName="idMenu">
+                <option *ngFor="let menu of menus" [value]="menu.idMenu">{{ menu.nombre }}</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="momento" class="form-label">Introduce momento del día</label>
+            <input type="text" class="form-control" id="momento" formControlName="momento">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-sm" [disabled]="menuPlatoForm.invalid">Guardar nuevo menú
+            diseñado</button>
+    </form>
+</div>
+
+<div class="row mb-3">
+    <button class="btn btn-secondary ms-2" (click)="volver()">Atrás</button>
+    
+</div>

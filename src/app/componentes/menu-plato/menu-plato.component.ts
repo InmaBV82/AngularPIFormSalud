@@ -2,19 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { MenuPlatoDTO } from '../../modelos/MenuPlatoDTO';
 import { MenuPlatoService } from '../../servicios/menu-plato.service';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { EncabezadoComponent } from '../encabezado/encabezado.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { TiposService } from '../../servicios/tipos.service';
 import { Tipo } from '../../modelos/Tipo';
+import { MenuService } from '../../servicios/menu.service';
 
 
 @Component({
   selector: 'app-menu-plato',
   standalone: true,
-  imports: [CommonModule, RouterModule, EncabezadoComponent, NgxPaginationModule, FormsModule ],
+  imports: [CommonModule, RouterModule, EncabezadoComponent, NgxPaginationModule, FormsModule, RouterLink],
   templateUrl: './menu-plato.component.html',
   styleUrl: './menu-plato.component.css'
 })
@@ -28,6 +29,7 @@ export class MenuPlatoComponent  implements OnInit {
 
   constructor(
     private menuPlatoService: MenuPlatoService,
+    private menuService: MenuService,
     private tiposService: TiposService,
     private route: Router
 
@@ -83,6 +85,30 @@ export class MenuPlatoComponent  implements OnInit {
     });
   
   }
+
+  comprobarAdmin(): boolean{
+    if(this.userId == 1){
+
+      return true;
+    }
+
+    return false;
+
+  }
+
+  eliminarMenu(idmenu: number) {
+    this.menuService.deleteMenu(idmenu).subscribe({
+      error: (e) => {
+        console.error("Error al borrar el Menú");
+      },
+      next: (n) => {
+        console.log("Menú borrado");
+        // Actualizo la lista de menús diseñados en el frontend,filtrando la lista de menús para eliminar el menú que se acabo de borrar. 
+        this.menus = this.menus.filter(menu => menu.value[0].menuid !== idmenu);
+      }
+    });
+  }
+
 
   
 

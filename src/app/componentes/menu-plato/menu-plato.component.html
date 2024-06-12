@@ -1,8 +1,10 @@
 <app-encabezado></app-encabezado>
+
 <div class="container">
   <div class="row">
-    <div class="col-6">
-      <h1 class="text-secondary text-center">Menús Diseñados</h1>
+    <div class="col-6 d-flex align-items-center">
+      <button *ngIf="comprobarAdmin()" class="btn btn-warning m-3" routerLink="/addMenuPlato">+</button>
+      <h1 class="text-secondary">Menús Diseñados</h1>
     </div>
     <div class="col-6">
       <form class="d-flex" (ngSubmit)="buscar(tipo.value)">
@@ -29,6 +31,7 @@
             <p class="mb-1">{{ plato?.tipoMenu }}</p>
           </div>
         </div>
+        <button class="btn btn-danger btn-sm m-2" (click)="eliminarMenu(menu.value[0].menuid)">Eliminar</button>
       </div>
       <div class="d-flex justify-content-end mt-3">
         <pagination-controls (pageChange)="p = $event" class="pagination-sm"></pagination-controls>
