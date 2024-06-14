@@ -3,7 +3,7 @@ export class Usuario {
     nombre: string;
     email: string;
     password: string;
-    rol?: string;//? significa que es opcional porque es autoincrementable en la BD
+    rol?: string;//? significa que es opcional porque yo le doy un valor por defecto
 
     constructor(
         id: number,

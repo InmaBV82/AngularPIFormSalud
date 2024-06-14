@@ -6,7 +6,7 @@ export interface PlatoAddDTO{
 
     descripcion: String
     
-    //foto: string;
+    foto: string;
 
     ingredientes: String
 
