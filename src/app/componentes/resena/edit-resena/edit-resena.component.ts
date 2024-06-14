@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PlatoService } from '../../../servicios/plato.service';
-import { UsuariosService } from '../../../servicios/usuarios.service';
 import { ResenaService } from '../../../servicios/resena.service';
 import { PlatoDTO } from '../../../modelos/PlatoDTO';
 import { ResenaAddDTO } from '../../../modelos/ResenaAddDTO';
@@ -35,14 +33,13 @@ export class EditResenaComponent implements OnInit{
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private resenaService: ResenaService,
-    private platoService: PlatoService,
     private router: Router
   
   ) {
     
     this.resenaForm = this.formBuilder.group({
       comentario: ['', Validators.required],
-      fecha: ['', Validators.required],
+      fecha: [{ value: '', disabled: true }],
       puntuacion: ['', Validators.required],
       platoId: ''
 
@@ -63,7 +60,6 @@ export class EditResenaComponent implements OnInit{
         next: (data: ResenaAddDTO) => {
           // se utiliza para asignar valores a un formulario reactivo en Angular
           this.resenaForm.patchValue(data);
-      //    console.log(data)
           this.resena=data
           // Ahora que el formulario está inicializado no da error de undefined=>usuarioId
         },
@@ -81,12 +77,14 @@ export class EditResenaComponent implements OnInit{
           this.alertaPersonalizadaError("Error","Error al editar la reseña","Error" )
         },
         next: (n) =>{
-          this.router.navigateByUrl('/perfil');
+          
           this.alertaPersonalizadaOK("OK","Reseña modificada correctamente","Confirm" )
+          this.router.navigateByUrl('/perfil');
           
         }
       });
     }
+    
   }
 
 

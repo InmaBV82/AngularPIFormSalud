@@ -100,7 +100,7 @@ buscar(): void {
     error: (error: any) => {
       this.alertaPersonalizadaError("Error", "No hay coincidencias", "error");
       this.platos = []; // Vacía la lista para que no permanezcan las últimas filtradas
-      console.error('Error al obtener los platos:', error);
+      this.nombre = ''; // Limpiar el campo de búsqueda después de obtener los resultados
     }
   });
 }

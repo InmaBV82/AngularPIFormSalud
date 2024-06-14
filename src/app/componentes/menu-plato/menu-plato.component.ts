@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuPlatoDTO } from '../../modelos/MenuPlatoDTO';
 import { MenuPlatoService } from '../../servicios/menu-plato.service';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterModule } from '@angular/router';

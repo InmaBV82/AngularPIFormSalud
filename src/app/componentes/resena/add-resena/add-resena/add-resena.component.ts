@@ -1,12 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResenaService } from '../../../../servicios/resena.service';
 import { UsuariosService } from '../../../../servicios/usuarios.service';
-import { Categoria } from '../../../../modelos/Categoria';
-import { ListadoCategoriaService } from '../../../../servicios/listado-categoria.service';
 import { ResenaAddDTO } from '../../../../modelos/ResenaAddDTO';
 import { PlatoDTO } from '../../../../modelos/PlatoDTO';
 import { PlatoService } from '../../../../servicios/plato.service';
@@ -45,9 +43,9 @@ export class AddResenaComponent implements OnInit{
     
     this.resenaForm = this.formBuilder.group({
       comentario: ['', Validators.required],
-      fecha: ['', Validators.required],
+      fecha: ['', [Validators.required, this.fechaValidator]],
       puntuacion: ['', Validators.required],
-    //  platoId:  ['', Validators.required]
+
 
     });
     
@@ -73,7 +71,7 @@ export class AddResenaComponent implements OnInit{
         }
       }
     });
-   // this.cargarPlatos();
+
     
   }
 
@@ -85,6 +83,22 @@ export class AddResenaComponent implements OnInit{
       error: (err) => console.error('Error al cargar plato', err)
     });
   }
+
+  // Validador personalizado para la fecha
+  fechaValidator(control: AbstractControl): ValidationErrors | null {
+    const hoy = new Date();
+    const fechaSeleccionada = new Date(control.value);
+
+    // Ajusto las fechas para eliminar la parte de la hora
+    hoy.setHours(0, 0, 0, 0);
+    fechaSeleccionada.setHours(0, 0, 0, 0);
+
+    // Comparo las fechas
+    if (fechaSeleccionada.getTime() !== hoy.getTime()) {
+      return { invalidDate: true };
+    }
+    return null;
+}
 
 
   agregarResena() {
@@ -120,15 +134,6 @@ export class AddResenaComponent implements OnInit{
     }
   }
 
-  cargarPlatos(): void {
-    this.platoService.getTodoslosPlatos().subscribe({
-      next: (data: PlatoDTO[]) => {
-        this.platos = data;
-      },
-      error: (err) => console.error('Error al cargar platos', err)
-    });
-  }
-  
   volver() {
     this.router.navigate(['/perfil']);
   }

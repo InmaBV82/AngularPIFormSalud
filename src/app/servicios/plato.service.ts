@@ -37,7 +37,7 @@ export class PlatoService {
     return this.http.get<PlatoAddDTO>(this.apiUrl+ 'platoAddDTO/'+platoid);
   }
 
-
+//Platos de un usuario
   getPlatosUsuario(): Observable<PlatoDTO[]> {
     let userId = this.usuarioService.getUserId();
     return this.http.get<PlatoDTO[]>(this.apiUrl+ 'platosUsuario/'+userId);
@@ -57,7 +57,7 @@ export class PlatoService {
   }
 
    //DELETE
-   deletePlato(id:number): Observable<PlatoDTO> {
+  deletePlato(id:number): Observable<PlatoDTO> {
     return this.http.delete<PlatoDTO>(this.apiUrl+ 'platoDelete/'+id);
 
   }

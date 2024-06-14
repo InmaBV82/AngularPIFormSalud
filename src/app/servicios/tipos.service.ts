@@ -12,7 +12,7 @@ export class TiposService {
   
   constructor(private http : HttpClient){
   this.apiUrl = 'http://localhost:8099/';
-   }
+  }
 
 //GET
   obtenerTipos(): Observable<Tipo[]> {

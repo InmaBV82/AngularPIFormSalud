@@ -38,14 +38,14 @@ export class AllUsuariosComponent implements OnInit {
   }
 
   cargarUsuarios(): void {
-    this.usuarios = [];// Limpia las reseñas antes de cargar nuevas
+    this.usuarios = [];// Limpia la lista  antes de cargar nuevas
     this.usuarioService.getUsuarios().subscribe({
       next: (data: Usuario[]) => {
         this.usuarios = [];
         this.usuarios = data
       },
       error: (error: any) => {
-        console.error('Error al obtener las reseñas:', error);
+        console.error('Error al obtener los usuarios:', error);
       }
     });
   }

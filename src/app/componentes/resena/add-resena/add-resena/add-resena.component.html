@@ -7,6 +7,9 @@
     <div class="mb-3">
       <label for="fecha" class="form-label">Fecha</label>
       <input type="date" class="form-control" id="fecha" formControlName="fecha">
+      <div *ngIf="resenaForm.get('fecha')?.invalid && resenaForm.get('fecha')?.touched" class="text-danger">
+        Fecha inválida. La fecha debe ser el día de hoy.
+      </div>
     </div>
     <div class="mb-3">
       <label for="puntuacion" class="form-label">Puntuación</label>

@@ -27,7 +27,6 @@ export class EditPlatoComponent implements OnInit{
 
   nombre = true;
   descripcion = true;
-  //foto = true;
   ingredientes = true;
   tiempo = true;
   categoriaid = true;

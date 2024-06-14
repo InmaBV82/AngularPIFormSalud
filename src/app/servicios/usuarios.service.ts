@@ -4,7 +4,6 @@ import { Usuario } from '../modelos/Usuario';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { FormGroup } from '@angular/forms';
-import Swal from 'sweetalert2';
 
 
 @Injectable({
@@ -95,7 +94,6 @@ recuperarPassword(nombre: string, email: string): Observable<any> {
   getUserId(): number {//devolver el userId convertido en number
     const id = sessionStorage.getItem('userId');
     const parsedId = id ? parseInt(id, 10) : 0;
-  //  console.log(this.getUserId)
     return Number.isNaN(parsedId) ? 0 : parsedId;
   }
 

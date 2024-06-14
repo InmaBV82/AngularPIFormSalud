@@ -1,4 +1,4 @@
-import { APP_BOOTSTRAP_LISTENER, Component, OnInit, Renderer2  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgIf, NgStyle } from '@angular/common';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UsuariosService } from '../../servicios/usuarios.service';
@@ -26,8 +26,7 @@ export class LoginComponent implements OnInit{
   constructor(
     private usuarioService: UsuariosService, 
     private fb: FormBuilder,
-    private router: Router,
-    private renderer: Renderer2
+    private router: Router
   ) { }
 
   formLogin: FormGroup=this.fb.group({

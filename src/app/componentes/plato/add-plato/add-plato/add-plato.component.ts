@@ -64,7 +64,6 @@ export class AddPlatoComponent implements OnInit{
 
 
   agregarPlato() {
-    //console.log(this.platoForm.value)
     this.nombre = true;
     this.descripcion = true;
     this.foto = true;

@@ -7,7 +7,6 @@ import { TiposService } from '../../../servicios/tipos.service';
 import { UsuariosService } from '../../../servicios/usuarios.service';
 import { MenuService } from '../../../servicios/menu.service';
 import { PlatoDTO } from '../../../modelos/PlatoDTO';
-import { MenuPlatoDTO } from '../../../modelos/MenuPlatoDTO';
 import { MenuDTO } from '../../../modelos/MenuDTO';
 import { PlatoService } from '../../../servicios/plato.service';
 import { MenuPlatoService } from '../../../servicios/menu-plato.service';

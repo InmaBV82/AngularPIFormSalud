@@ -39,7 +39,9 @@ o reaccionar a cambios en dicho estado.*/
 
   salir(): void {
     sessionStorage.removeItem('userId');
-    this.router.navigateByUrl("/login");
+   // this.router.navigateByUrl("/login");
+    window.location.reload() //me lleva a la vista de inicio
+    
   
   }
 

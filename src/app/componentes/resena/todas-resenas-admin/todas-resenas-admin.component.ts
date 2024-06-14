@@ -71,7 +71,6 @@ export class TodasResenasAdminComponent implements OnInit {
 
   buscar(puntuacion: string): void {
     const puntuacionNumero = Number(puntuacion);
-    console.log(puntuacionNumero)
 
     if (isNaN(puntuacionNumero) || puntuacion.trim() === '') {
       this.alertaPersonalizadaError("Error","Introduce una puntuación","Error" )

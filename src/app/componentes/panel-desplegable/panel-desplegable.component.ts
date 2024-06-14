@@ -16,7 +16,7 @@ import { RouterModule } from '@angular/router';
 export class PanelDesplegableComponent implements OnInit {
   usuarioId!:number
   resenas: ResenaDTO[]=[];
-  mostrarResenas: boolean = false;  // Estado para controlar la visualización
+  mostrarResenas: boolean = false;  // Para controlar la visualización
   
 
   constructor(
@@ -27,7 +27,6 @@ export class PanelDesplegableComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioId = this.usuarioService.getUserId(); // Obtener el ID del usuario logueado
-    //this.cargarResenas();
   }
 
   cargarResenas(): void {
