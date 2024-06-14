@@ -14,7 +14,7 @@ export class MenuService {
   constructor(
     private http : HttpClient
   ) {
-    this.apiUrl = 'http://localhost:8080/';
+    this.apiUrl = 'http://localhost:8099/';
   }
 
   //GET

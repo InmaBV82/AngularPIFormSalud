@@ -17,7 +17,7 @@ import { AddResenaComponent } from './componentes/resena/add-resena/add-resena/a
 import { EditResenaComponent } from './componentes/resena/edit-resena/edit-resena.component';
 import { TodasResenasAdminComponent } from './componentes/resena/todas-resenas-admin/todas-resenas-admin.component';
 import { EditarUsuarioComponent } from './componentes/ajustes-usuario/editar-usuario/editar-usuario.component';
-import { AllUsuariosComponent } from './all-usuarios/all-usuarios.component';
+import { AllUsuariosComponent } from './componentes/all-usuarios/all-usuarios.component';
 import { AddMenuPlatoComponent } from './componentes/menu-plato/add-menu-plato/add-menu-plato.component';
 
 export const routes: Routes = [

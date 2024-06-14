@@ -16,7 +16,7 @@ export class ResenaService {
   constructor(
     private http : HttpClient,
     private usuarioService: UsuariosService) {
-    this.apiUrl = 'http://localhost:8080/';
+    this.apiUrl = 'http://localhost:8099/';
   }
 
   //GET

@@ -11,7 +11,7 @@ export class ListadoCategoriaService {
   private apiUrl: string;
 
   constructor(private htp : HttpClient) {
-    this.apiUrl = 'http://localhost:8080/';
+    this.apiUrl = 'http://localhost:8099/';
   }
 
 

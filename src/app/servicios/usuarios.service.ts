@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from '../modelos/Usuario';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 
@@ -25,7 +25,7 @@ export class UsuariosService {
     private router : Router,
 
   ){
-  this.apiUrl = 'http://localhost:8080/';
+  this.apiUrl = 'http://localhost:8099/';
   if(this.getUserId()){
     this.getUnUsuario(this.getUserId()).subscribe(
       (user:Usuario)=>{this.setUser(user)}
@@ -92,11 +92,17 @@ recuperarPassword(nombre: string, email: string): Observable<any> {
     sessionStorage.setItem('userId', userId.toString());
   }
 
-  getUserId(): number {//devolver el userId convertido en
+  getUserId(): number {//devolver el userId convertido en number
     const id = sessionStorage.getItem('userId');
     const parsedId = id ? parseInt(id, 10) : 0;
   //  console.log(this.getUserId)
     return Number.isNaN(parsedId) ? 0 : parsedId;
+  }
+
+  //comprobar si el usuario es admin
+  isAdmin(): boolean {
+    const userId = sessionStorage.getItem('userId');
+    return userId === '1'; // Porque el ID del administrador es 1
   }
   
 
@@ -107,23 +113,17 @@ recuperarPassword(nombre: string, email: string): Observable<any> {
     this.user$.next(undefined) 
     
   }
-
-
-  alertaPersonalizadaError(title:string, text:string, confirmButtonText:string){
-    Swal.fire({
-      title:title,
-      text: text,
-      icon: 'error',
-      confirmButtonText:confirmButtonText
-    });
-  }
-
+  
   //PUT
-  editarUsuario(id:number,form: FormGroup, ) {
-    const usuarioUpdate = form.value; // Guardo los valores del formulario para pasarselo a la llamada
-    return this.http.put(this.apiUrl + 'editarUsuario/' + id, usuarioUpdate);
-  }
-
+// Uso `tap` para actualizar el `BehaviorSubject` con el usuario actualizado
+editarUsuario(id: number, form: FormGroup): Observable<Usuario> {
+  const usuarioUpdate = form.value;
+  return this.http.put<Usuario>(this.apiUrl + 'editarUsuario/' + id, usuarioUpdate).pipe(
+    tap((updatedUser: Usuario) => {
+      this.setUser(updatedUser);
+    })
+  );
+}
 
 
 

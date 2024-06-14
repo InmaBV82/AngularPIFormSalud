@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from '../modelos/Usuario';
-import { UsuariosService } from '../servicios/usuarios.service';
+import { Usuario } from '../../modelos/Usuario';
+import { UsuariosService } from '../../servicios/usuarios.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -20,16 +20,18 @@ export class AllUsuariosComponent implements OnInit {
 
 
   constructor(
-    private usuarioservice: UsuariosService,
+    private usuarioService: UsuariosService,
     private router: Router
   ){  }
 
   ngOnInit(): void {
     let session=sessionStorage.getItem('userId')
-    if(session != null){
-      this.usuarioId = Number (session);
-    }else{
+    if(session == null){
       this.router.navigateByUrl("/inicio")
+    }
+    if (!this.usuarioService.isAdmin()) {
+      this.router.navigateByUrl("/inicio");
+      return;
     }
       this.cargarUsuarios();
     
@@ -37,7 +39,7 @@ export class AllUsuariosComponent implements OnInit {
 
   cargarUsuarios(): void {
     this.usuarios = [];// Limpia las reseñas antes de cargar nuevas
-    this.usuarioservice.getUsuarios().subscribe({
+    this.usuarioService.getUsuarios().subscribe({
       next: (data: Usuario[]) => {
         this.usuarios = [];
         this.usuarios = data

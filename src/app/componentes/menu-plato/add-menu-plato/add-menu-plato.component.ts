@@ -75,6 +75,8 @@ export class AddMenuPlatoComponent implements OnInit{
         },
         next: (n) =>{
           console.log("Menú creado" )
+        //para actualizar el form del menu y que aparezca en el desplegable del menuplato
+          location.reload()
           
         }
       });

@@ -34,7 +34,6 @@ export class EditarUsuarioComponent implements OnInit{
 
   ngOnInit(): void {
     let session=sessionStorage.getItem('userId')
-      
     if(session != null){
       this.usuarioId = Number (session);
     }else{
@@ -75,6 +74,7 @@ export class EditarUsuarioComponent implements OnInit{
         }
       });
     }
+  
 
   }
 

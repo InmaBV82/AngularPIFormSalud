@@ -6,6 +6,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { ResenaDTO } from '../../../modelos/ResenaDTO';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UsuariosService } from '../../../servicios/usuarios.service';
 
 
 
@@ -25,15 +26,18 @@ export class TodasResenasAdminComponent implements OnInit {
 
   constructor(
     private resenaService: ResenaService,
+    private usuarioService: UsuariosService,
     private router: Router
   ){  }
 
   ngOnInit(): void {
     let session=sessionStorage.getItem('userId')
-    if(session != null){
-      this.usuarioId = Number (session);
-    }else{
+    if(session == null){
       this.router.navigateByUrl("/inicio")
+    }
+    if (!this.usuarioService.isAdmin()) {
+      this.router.navigateByUrl("/inicio");
+      return;
     }
       this.cargarResenas();
     
